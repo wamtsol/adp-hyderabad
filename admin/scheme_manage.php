@@ -50,28 +50,33 @@ $page="scheme_manage";
                                 <table width="100%" class="table table-hover list">
                                     <tr>
                                         <th width="2%" class="text-center">SN</th>
-                                        <th width="8%">ADP No</th>
-                                        <th width="15%">Project Description</th>
-										<th width="8%">Category</th>
-                                        <th width="10%">Year of Approval</th>
-                                        <th width="8%">Sector</th>
-                                        <th width="8%">Taluka</th>
+                                        <th width="12%">ADP No</th>
+                                        <th width="20%">Project Description</th>
+										<th width="10%">Category</th>
+                                        <th width="8%">Year of Approval</th>
+                                        <th width="10%">Sector</th>
+                                        <th width="10%">Taluka</th>
                                         <th width="10%">Completion Date</th>
-                                        <th width="10%">Approved Cost</th>
-										<th width="10%">Throw Forward</th>
-										<th width="10%">Original Budget</th>
-										<th width="10%">Final Budget</th>
-										<th width="10%">Prog release</th>
-										<th width="10%">Prog expenditure</th>
+                                        <th width="8%">Approved Cost</th>
+										<th width="8%">Throw Forward</th>
+										<th width="8%">Original Budget</th>
+										<th width="8%">Final Budget</th>
+										<th width="8%">Prog release</th>
+										<th width="8%">Prog expenditure</th>
 										<th width="10%">Prog Rel as % of Final Budget</th>
 										<th width="10%">Prog Exp as % of Final Budget</th>
 										<th width="10%">% Utilization of Released Amount</th>
                                     </tr>
                                     <tr data-ng-repeat="scheme in schemes">
                                         <td class="text-center">{{ $index+1 }}</td>
-                                        <td>{{ scheme.adp_number }} <a data-ng-click="editScheme( $index )"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp; <input type="text" data-ng-model="scheme.adp_number" /></td>
-                                        <td>{{ scheme.project_description }}</td>
-                                        <td>{{ scheme.category }}</td>
+                                        <td><input type="text" data-ng-model="scheme.adp_number" class="form-control" /> </td>
+                                        <td><textarea data-ng-model="scheme.project_description" class="form-control">{{ scheme.project_description }}</textarea></td>
+                                        <td>
+											<select data-ng-model="scheme.category_id" convert-to-number>
+												<option value="0">Select Category</option>
+                                                <option data-ng-repeat="category in categories" value="category.id">{{ category.title }}</option>
+											</select>
+										</td>
                                         <td>2016</td>
                                         <td>{{ scheme.sector }}</td>
 										<td>{{ scheme.taluka }}</td>
@@ -86,8 +91,9 @@ $page="scheme_manage";
 										<td>100.41%</td>
 										<td>100.41%</td>
                                     </tr>
-                                    <tr data-ng-if="schemes.length==0">
-                                        <td class="danger" colspan="17">No Rocord found.</td>
+                                    <tr>
+										<td colspan="15"><span class="danger" data-ng-if="schemes.length==0">No Rocord found.</span></td>
+										<td colspan="2"><a href="" class="btn btn-xl btn-default" data-ng-click="add()">Add New</a></td>
                                     </tr>
                                 </table>
                             </div>

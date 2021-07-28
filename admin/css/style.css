@@ -2787,7 +2787,7 @@ select {
 /* Form Control */
 .form-control, .content select {
   border-radius: 3px;
-  font-size: 14px;
+  font-size: 12px;
   background: #fff;
   border: 1px solid #BDC4C9;
   display: block;
@@ -4874,6 +4874,10 @@ h2.total-heading {
 .table.list th, .table.list td {
   font-size: 12px;
   text-align: center;
+  vertical-align: middle;
+}
+.btn.btn-xl.btn-default{
+  height:auto;
 }
 @media only screen and (max-width: 991px) {
 .color5-bg.summary-color {

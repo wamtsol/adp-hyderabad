@@ -6,6 +6,19 @@ if(isset($_REQUEST["action"])){
         case 'get_date':
             $response = date_convert( date( "Y-m-d" ) );
         break;
+        case "get_categories":
+			$rs = doquery( "select * from category where status=1 order by title", $dblink );
+			$categories = array();
+			if( numrows( $rs ) > 0 ) {
+				while( $r = dofetch( $rs ) ) {
+					$categories[] = array(
+						"id" => $r[ "id" ],
+						"title" => unslash($r[ "title" ])
+					);
+				}
+			}
+			$response = $categories;
+		break;
         case "get_schemes":
             $sql = "select %s from schemes a where status=1 and adp_number like '%".$_REQUEST["search"]."%' order by ts desc";
             $rs = show_page( $rows, $pageNum, str_replace("%s", "a.*", $sql));

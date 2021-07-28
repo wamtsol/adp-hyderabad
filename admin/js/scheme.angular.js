@@ -10,9 +10,11 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 		$scope.maxSize = 5;
 		$scope.schemes = [];
 		$scope.errors = [];
+		$scope.categories = [];
 		$scope.processing = true;
 		$scope.newScheme = {};
 		$scope.defaultNewScheme = {
+			category_id: 0,
 			description: "",
 			order_number: "",
 			responsible_user: ""
@@ -26,6 +28,9 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 			$scope.addingNewScheme = false;
 			$scope.errors = [];
 			$scope.processing = false;
+		}
+		$scope.add = function( ){
+			$scope.schemes.push(angular.copy( $scope.defaultNewScheme ));
 		}
 		$scope.saveScheme = function(){
 			if( $scope.processing == false ) {
@@ -66,6 +71,9 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 		}
 		angular.element(document).ready(function () {
 			$scope.get_records();
+			$scope.wctAJAX( {action: 'get_categories'}, function( response ){
+				$scope.categories = response;
+			});
 		});
 		$scope.get_records = function () {
 			$scope.processing = true;
