@@ -11,47 +11,57 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 		$scope.schemes = [];
 		$scope.errors = [];
 		$scope.categories = [];
+		$scope.sectors = [];
+		$scope.taluka = [];
 		$scope.processing = true;
 		$scope.newScheme = {};
 		$scope.defaultNewScheme = {
-			category_id: 0,
-			description: "",
-			order_number: "",
-			responsible_user: ""
+			id: 0,
+			sector_id: 0,
+			taluka_id: 0,
+			category_id: "",
+			adp_number: "",
+			project_description: "",
+			completion_date: "",
+			approved_cost: "",
+			through_forward: "",
+			original_budget: "",
+			final_budget: "",
+			progress_release: "",
+			progress_expenditure: ""
 		};
-		$scope.addingNewScheme = false;
-		$scope.addNewScheme = function(){
-			$scope.newScheme = angular.copy($scope.defaultNewScheme);
-			$scope.addingNewScheme = true;
-		}
-		$scope.closeAddNewScheme = function(){
-			$scope.addingNewScheme = false;
-			$scope.errors = [];
-			$scope.processing = false;
-		}
+		// $scope.addingNewScheme = false;
+		// $scope.addNewScheme = function(){
+		// 	$scope.newScheme = angular.copy($scope.defaultNewScheme);
+		// 	$scope.addingNewScheme = true;
+		// }
+		// $scope.closeAddNewScheme = function(){
+		// 	$scope.addingNewScheme = false;
+		// 	$scope.errors = [];
+		// 	$scope.processing = false;
+		// }
 		$scope.add = function( ){
 			$scope.schemes.push(angular.copy( $scope.defaultNewScheme ));
+			//$scope.newScheme = angular.copy($scope.defaultNewScheme);
 		}
 		$scope.saveScheme = function(){
+			//$scope.newScheme = angular.copy($scope.defaultNewScheme);
 			if( $scope.processing == false ) {
-				if( $scope.newScheme.adp_number == ""){
-					alert("Enter ADP Number");
-				}
-				else{
+				
 					$scope.processing = true;
-					$scope.wctAJAX( {action: 'add_scheme', schemes: JSON.stringify($scope.newScheme)}, function( response ){
+					$scope.wctAJAX( {action: 'add_scheme', schemes: JSON.stringify($scope.schemes)}, function( response ){
 						$scope.processing = false;
 						if( response.status == 1 ) {
 							if( !$scope.newScheme.id ){
 								$scope.schemes.unshift(response.schemes);
 							}
-							$scope.addingNewScheme = false;
+							//$scope.addingNewScheme = false;
 						}
 						else{
 							alert(response.message);
 						}
 					});
-				}
+				
 			}
 		}
 		$scope.editScheme = function( $index ){
@@ -73,6 +83,13 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 			$scope.get_records();
 			$scope.wctAJAX( {action: 'get_categories'}, function( response ){
 				$scope.categories = response;
+				console.log($scope.categories);
+			});
+			$scope.wctAJAX( {action: 'get_sector'}, function( response ){
+				$scope.sectors = response;
+			});
+			$scope.wctAJAX( {action: 'get_taluka'}, function( response ){
+				$scope.taluka = response;
 			});
 		});
 		$scope.get_records = function () {

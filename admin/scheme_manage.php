@@ -53,16 +53,16 @@ $page="scheme_manage";
                                         <th width="12%">ADP No</th>
                                         <th width="20%">Project Description</th>
 										<th width="10%">Category</th>
-                                        <th width="8%">Year of Approval</th>
+                                        <th width="6%">Year of Approval</th>
                                         <th width="10%">Sector</th>
                                         <th width="10%">Taluka</th>
-                                        <th width="10%">Completion Date</th>
-                                        <th width="8%">Approved Cost</th>
-										<th width="8%">Throw Forward</th>
-										<th width="8%">Original Budget</th>
-										<th width="8%">Final Budget</th>
-										<th width="8%">Prog release</th>
-										<th width="8%">Prog expenditure</th>
+                                        <th width="6%">Completion Date</th>
+                                        <th width="6%">Approved Cost</th>
+										<th width="6%">Throw Forward</th>
+										<th width="6%">Original Budget</th>
+										<th width="6%">Final Budget</th>
+										<th width="6%">Prog release</th>
+										<th width="6%">Prog expenditure</th>
 										<th width="10%">Prog Rel as % of Final Budget</th>
 										<th width="10%">Prog Exp as % of Final Budget</th>
 										<th width="10%">% Utilization of Released Amount</th>
@@ -70,30 +70,36 @@ $page="scheme_manage";
                                     <tr data-ng-repeat="scheme in schemes">
                                         <td class="text-center">{{ $index+1 }}</td>
                                         <td><input type="text" data-ng-model="scheme.adp_number" class="form-control" /> </td>
-                                        <td><textarea data-ng-model="scheme.project_description" class="form-control">{{ scheme.project_description }}</textarea></td>
+                                        <td><textarea data-ng-model="scheme.project_description" class="form-control" rows="8">{{ scheme.project_description }}</textarea></td>
                                         <td>
-											<select data-ng-model="scheme.category_id" convert-to-number>
-												<option value="0">Select Category</option>
-                                                <option data-ng-repeat="category in categories" value="category.id">{{ category.title }}</option>
+											<select data-ng-model="scheme.category_id" chosen ng-options="category.id as category.title for category in categories">
+												
 											</select>
 										</td>
                                         <td>2016</td>
-                                        <td>{{ scheme.sector }}</td>
-										<td>{{ scheme.taluka }}</td>
-										<td>{{ scheme.completion_date }}</td>
-										<td>{{ scheme.approved_cost }}</td>
-										<td>{{ scheme.through_forward }}</td>
-										<td>{{ scheme.original_budget }}</td>
-										<td>{{ scheme.final_budget }}</td>
-										<td>{{ scheme.progress_release }}</td>
-										<td>{{ scheme.progress_expenditure }}</td>
+                                        <td>
+                                            <select data-ng-model="scheme.sector_id" chosen ng-options="sector.id as sector.title for sector in sectors">
+											</select>
+                                        </td>
+										<td>
+                                            <select data-ng-model="scheme.taluka_id" chosen ng-options="talk.id as talk.title for talk in taluka">
+											</select>
+                                        </td>
+										<td><input type="text" data-ng-model="scheme.completion_date" class="form-control date-picker" /></td>
+										<td><input type="text" data-ng-model="scheme.approved_cost" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.through_forward" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.original_budget" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.final_budget" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.progress_release" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.progress_expenditure" class="form-control" /></td>
 										<td>100%</td>
 										<td>100.41%</td>
 										<td>100.41%</td>
                                     </tr>
                                     <tr>
-										<td colspan="15"><span class="danger" data-ng-if="schemes.length==0">No Rocord found.</span></td>
-										<td colspan="2"><a href="" class="btn btn-xl btn-default" data-ng-click="add()">Add New</a></td>
+										<td colspan="13"><span class="danger" data-ng-if="schemes.length==0">No Rocord found.</span></td>
+                                        <td colspan="2"><a href="" class="btn btn-lg btn-default" data-ng-click="add()">Add New</a></td>
+                                        <td colspan="2"><button type="submit" ng-disabled="processing" class="btn btn-lg btn-default" ng-click="saveScheme()" title="Submit Record"><i class="fa fa-spin fa-gear" ng-show="processing"></i> SUBMIT</button></td>
                                     </tr>
                                 </table>
                             </div>

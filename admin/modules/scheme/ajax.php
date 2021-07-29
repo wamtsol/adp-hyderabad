@@ -12,12 +12,38 @@ if(isset($_REQUEST["action"])){
 			if( numrows( $rs ) > 0 ) {
 				while( $r = dofetch( $rs ) ) {
 					$categories[] = array(
-						"id" => $r[ "id" ],
+						"id" => (int)$r[ "id" ],
 						"title" => unslash($r[ "title" ])
 					);
 				}
 			}
 			$response = $categories;
+        break;
+        case "get_sector":
+			$rs = doquery( "select * from sector where status=1 order by title", $dblink );
+			$sectors = array();
+			if( numrows( $rs ) > 0 ) {
+				while( $r = dofetch( $rs ) ) {
+					$sectors[] = array(
+						"id" => (int)$r[ "id" ],
+						"title" => unslash($r[ "title" ])
+					);
+				}
+			}
+			$response = $sectors;
+        break;
+        case "get_taluka":
+			$rs = doquery( "select * from taluka where status=1 order by title", $dblink );
+			$taluka = array();
+			if( numrows( $rs ) > 0 ) {
+				while( $r = dofetch( $rs ) ) {
+					$taluka[] = array(
+						"id" => (int)$r[ "id" ],
+						"title" => unslash($r[ "title" ])
+					);
+				}
+			}
+			$response = $taluka;
 		break;
         case "get_schemes":
             $sql = "select %s from schemes a where status=1 and adp_number like '%".$_REQUEST["search"]."%' order by ts desc";
