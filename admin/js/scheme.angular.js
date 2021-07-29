@@ -12,7 +12,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 		$scope.errors = [];
 		$scope.categories = [];
 		$scope.sectors = [];
-		$scope.taluka = [];
+		$scope.talukas = [];
 		$scope.processing = true;
 		$scope.newScheme = {};
 		$scope.defaultNewScheme = {
@@ -28,21 +28,123 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 			original_budget: "",
 			final_budget: "",
 			progress_release: "",
-			progress_expenditure: ""
+			progress_expenditure: "",
+			addingNewCategory: false,
+			addingNewSector: false,
+			addingNewTaluka: false,
 		};
-		// $scope.addingNewScheme = false;
-		// $scope.addNewScheme = function(){
-		// 	$scope.newScheme = angular.copy($scope.defaultNewScheme);
-		// 	$scope.addingNewScheme = true;
-		// }
-		// $scope.closeAddNewScheme = function(){
-		// 	$scope.addingNewScheme = false;
-		// 	$scope.errors = [];
-		// 	$scope.processing = false;
-		// }
+		$scope.category = {
+			id: "",
+			title: ""
+		};
+		$scope.category_placeholder = {
+            id: "",
+			title: ""
+        };
+		$scope.toggleCategory = function($index) {
+			$scope.schemes[$index].addingNewCategory = !$scope.schemes[$index].addingNewCategory;
+			setTimeout(function(){focus();}, 100);
+		}
+		$scope.closeAddNewCategory = function($index){
+			$scope.schemes[$index].addingNewCategory = false;
+			$scope.errors = [];
+			$scope.processing = false;
+		}
+		$scope.save_category = function ($index) {
+            $scope.box_errors = [];
+            
+                data = {action: 'save_category', category: JSON.stringify( $scope.category )};
+                $scope.wctAJAX( data, function( response ){
+                   
+                    if( response.status == 1 ) {
+						$scope.categories.push(response.category);
+						$scope.schemes[$index].addingNewCategory = false;
+						$scope.schemes[$index].category_id = response.category.id;
+                        $scope.category = angular.copy( $scope.category_placeholder );
+                    }
+                    else{
+                        $scope.box_errors = response.error;
+                    }
+                });
+            
+		}
+		$scope.sector = {
+			id: "",
+			title: ""
+		};
+		$scope.sector_placeholder = {
+            id: "",
+			title: ""
+        };
+		$scope.toggleSector = function($index) {
+			$scope.schemes[$index].addingNewSector = !$scope.schemes[$index].addingNewSector;
+			setTimeout(function(){focus();}, 100);
+		}
+		$scope.closeAddNewSector = function($index){
+			$scope.schemes[$index].addingNewSector = false;
+			$scope.errors = [];
+			$scope.processing = false;
+		}
+		$scope.save_sector = function ($index) {
+            $scope.box_errors = [];
+                data = {action: 'save_sector', sector: JSON.stringify( $scope.sector )};
+                $scope.wctAJAX( data, function( response ){
+                    if( response.status == 1 ) {
+						$scope.sectors.push(response.sector);
+						$scope.schemes[$index].addingNewSector = false;
+						$scope.schemes[$index].sector_id = response.sector.id;
+                        $scope.sector = angular.copy( $scope.sector_placeholder );
+                    }
+                    else{
+                        $scope.box_errors = response.error;
+                    }
+                });
+		}
+		$scope.taluka = {
+			id: "",
+			title: ""
+		};
+		$scope.taluka_placeholder = {
+            id: "",
+			title: ""
+        };
+		$scope.toggleTaluka = function($index) {
+			$scope.schemes[$index].addingNewTaluka = !$scope.schemes[$index].addingNewTaluka;
+			setTimeout(function(){focus();}, 100);
+		}
+		$scope.closeAddNewTaluka = function($index){
+			$scope.schemes[$index].addingNewTaluka = false;
+			$scope.errors = [];
+			$scope.processing = false;
+		}
+		$scope.save_taluka = function ($index) {
+            $scope.box_errors = [];
+                data = {action: 'save_taluka', taluka: JSON.stringify( $scope.taluka )};
+                $scope.wctAJAX( data, function( response ){
+                    if( response.status == 1 ) {
+						$scope.talukas.push(response.taluka);
+						$scope.schemes[$index].addingNewTaluka = false;
+						$scope.schemes[$index].taluka_id = response.taluka.id;
+                        $scope.taluka = angular.copy( $scope.taluka_placeholder );
+                    }
+                    else{
+                        $scope.box_errors = response.error;
+                    }
+                });
+            
+        }
 		$scope.add = function( ){
 			$scope.schemes.push(angular.copy( $scope.defaultNewScheme ));
 			//$scope.newScheme = angular.copy($scope.defaultNewScheme);
+		}
+		$scope.remove = function( position ){
+			if( $scope.schemes.length > 1 ){
+				$scope.schemes.splice( position, 1 );
+			}
+			else {
+				$scope.schemes = [];
+				$scope.schemes.push( angular.copy( $scope.defaultNewScheme ) );
+			}
 		}
 		$scope.saveScheme = function(){
 			//$scope.newScheme = angular.copy($scope.defaultNewScheme);
@@ -75,10 +177,10 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 				$scope.schemes.splice( $index, 1 );
 			}
 		}
-		$scope.updateDate = function(){
-			$scope.newIssue.date_time = $(".angular-datetimepicker").val();
-			$scope.$apply();
-		}
+		// $scope.updateDate = function(){
+		// 	$scope.schemes.completion_date = $(".angular-datetimepicker").val();
+		// 	$scope.$apply();
+		// }
 		angular.element(document).ready(function () {
 			$scope.get_records();
 			$scope.wctAJAX( {action: 'get_categories'}, function( response ){
@@ -89,7 +191,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 				$scope.sectors = response;
 			});
 			$scope.wctAJAX( {action: 'get_taluka'}, function( response ){
-				$scope.taluka = response;
+				$scope.talukas = response;
 			});
 		});
 		$scope.get_records = function () {
@@ -115,9 +217,16 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 				$scope.get_records();
 			}, 200);
 		}
-		
+		$scope.savePromise;
 		$scope.update_record = function($index){
-			$scope.wctAJAX( {action: 'add_issue', issues: JSON.stringify($scope.issues[$index])}, function( response ){});
+			if($scope.savePromise){
+				$timeout.cancel($scope.savePromise);
+			}
+			$scope.savePromise = $timeout(function(){
+				$scope.wctAJAX( {action: 'add_scheme', schemes: JSON.stringify($scope.schemes[$index])}, function( response ){
+					$scope.schemes[$index].id = response.schemes.id;
+				});
+			}, 2000);
 		}
 		$scope.wctAJAX = function( wctData, wctCallback ) {
 			wctRequest = {

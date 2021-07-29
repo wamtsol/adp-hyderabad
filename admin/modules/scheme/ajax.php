@@ -112,6 +112,78 @@ if(isset($_REQUEST["action"])){
         case "delete_scheme":
             doquery( "delete from schemes where id = '".$_POST[ "id" ]."'", $dblink );
         break;
+        case "save_category":
+			$box_err = array();
+			$category = json_decode( $_POST[ "category" ] );
+			if( empty( $category->title ) ) {
+				$box_err[] = "Fields with * are mandatory";
+			}
+			if( count( $box_err ) == 0 ) {
+				doquery( "insert into category (title) VALUES ('".slash($category->title)."')", $dblink);
+				$id = inserted_id();
+				$response = array(
+					"status" => 1,
+					"category" => array(
+						"id" => $id,
+						"title" => $category->title,
+					)
+				);
+			}
+			else {
+				$response = array(
+					"status" => 0,
+					"error" => $box_err
+				);
+			}
+        break;
+        case "save_sector":
+			$box_err = array();
+			$sector = json_decode( $_POST[ "sector" ] );
+			if( empty( $sector->title ) ) {
+				$box_err[] = "Fields with * are mandatory";
+			}
+			if( count( $box_err ) == 0 ) {
+				doquery( "insert into sector (title) VALUES ('".slash($sector->title)."')", $dblink);
+				$id = inserted_id();
+				$response = array(
+					"status" => 1,
+					"sector" => array(
+						"id" => $id,
+						"title" => $sector->title,
+					)
+				);
+			}
+			else {
+				$response = array(
+					"status" => 0,
+					"error" => $box_err
+				);
+			}
+        break;
+        case "save_taluka":
+			$box_err = array();
+			$taluka = json_decode( $_POST[ "taluka" ] );
+			if( empty( $taluka->title ) ) {
+				$box_err[] = "Fields with * are mandatory";
+			}
+			if( count( $box_err ) == 0 ) {
+				doquery( "insert into taluka (title) VALUES ('".slash($taluka->title)."')", $dblink);
+				$id = inserted_id();
+				$response = array(
+					"status" => 1,
+					"taluka" => array(
+						"id" => $id,
+						"title" => $taluka->title,
+					)
+				);
+			}
+			else {
+				$response = array(
+					"status" => 0,
+					"error" => $box_err
+				);
+			}
+		break;
     }
     echo json_encode( $response );
     die;

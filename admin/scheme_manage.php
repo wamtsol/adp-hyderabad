@@ -50,56 +50,76 @@ $page="scheme_manage";
                                 <table width="100%" class="table table-hover list">
                                     <tr>
                                         <th width="2%" class="text-center">SN</th>
-                                        <th width="12%">ADP No</th>
-                                        <th width="20%">Project Description</th>
+                                        <th width="10%">ADP No</th>
+                                        <th width="15%">Project Description</th>
 										<th width="10%">Category</th>
-                                        <th width="6%">Year of Approval</th>
+                                        <th width="5%">Year of Approval</th>
                                         <th width="10%">Sector</th>
                                         <th width="10%">Taluka</th>
                                         <th width="6%">Completion Date</th>
-                                        <th width="6%">Approved Cost</th>
-										<th width="6%">Throw Forward</th>
-										<th width="6%">Original Budget</th>
-										<th width="6%">Final Budget</th>
-										<th width="6%">Prog release</th>
-										<th width="6%">Prog expenditure</th>
-										<th width="10%">Prog Rel as % of Final Budget</th>
-										<th width="10%">Prog Exp as % of Final Budget</th>
-										<th width="10%">% Utilization of Released Amount</th>
+                                        <th width="5%">Approved Cost</th>
+										<th width="5%">Throw Forward</th>
+										<th width="5%">Original Budget</th>
+										<th width="5%">Final Budget</th>
+										<th width="5%">Prog release</th>
+										<th width="5%">Prog expenditure</th>
+										<th width="5%">Prog Rel as % of Final Budget</th>
+										<th width="5%">Prog Exp as % of Final Budget</th>
+										<th width="5%">% Utilization of Released Amount</th>
                                     </tr>
                                     <tr data-ng-repeat="scheme in schemes">
                                         <td class="text-center">{{ $index+1 }}</td>
-                                        <td><input type="text" data-ng-model="scheme.adp_number" class="form-control" /> </td>
-                                        <td><textarea data-ng-model="scheme.project_description" class="form-control" rows="8">{{ scheme.project_description }}</textarea></td>
+                                        <td><input type="text" data-ng-model="scheme.adp_number" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /> </td>
+                                        <td><textarea data-ng-model="scheme.project_description" data-ng-change="update_record($index);changed[$index]=false" class="form-control" rows="8">{{ scheme.project_description }}</textarea></td>
                                         <td>
-											<select data-ng-model="scheme.category_id" chosen ng-options="category.id as category.title for category in categories">
+											<select data-ng-model="scheme.category_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="category.id as category.title for category in categories">
 												
-											</select>
+                                            </select><br>
+                                            <a href="" ng-click="toggleCategory($index)">Add New Category</a>
+                                            <div class="new-item" ng-show="scheme.addingNewCategory">
+                                                <input type="text" class="form-control" placeholder="Enter Category Name" ng-model="category.title">
+                                                <a href="" class="btn btn-danger" ng-click="closeAddNewCategory($index)">Cancel</a>
+                                                <a href="" ng-disabled="processing" ng-click="save_category($index)" class="btn btn-info">Save</a>
+                                            </div>
 										</td>
                                         <td>2016</td>
                                         <td>
-                                            <select data-ng-model="scheme.sector_id" chosen ng-options="sector.id as sector.title for sector in sectors">
-											</select>
+                                            <select data-ng-model="scheme.sector_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="sector.id as sector.title for sector in sectors">
+                                            </select><br>
+                                            <a href="" ng-click="toggleSector($index)">Add New Sector</a>
+                                            <div class="new-item" ng-show="scheme.addingNewSector">
+                                                <input type="text" class="form-control" placeholder="Enter Sector Name" ng-model="sector.title">
+                                                <a href="" class="btn btn-danger" ng-click="closeAddNewSector($index)">Cancel</a>
+                                                <a href="" ng-disabled="processing" ng-click="save_sector($index)" class="btn btn-info">Save</a>
+                                            </div>
                                         </td>
 										<td>
-                                            <select data-ng-model="scheme.taluka_id" chosen ng-options="talk.id as talk.title for talk in taluka">
-											</select>
+                                            <select data-ng-model="scheme.taluka_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="talk.id as talk.title for talk in talukas">
+                                            </select><br>
+                                            <a href="" ng-click="toggleTaluka($index)">Add New Taluka</a>
+                                            <div class="new-item" ng-show="scheme.addingNewTaluka">
+                                                <input type="text" class="form-control" placeholder="Enter Taluka Name" ng-model="taluka.title">
+                                                <a href="" class="btn btn-danger" ng-click="closeAddNewTaluka($index)">Cancel</a>
+                                                <a href="" ng-disabled="processing" ng-click="save_taluka($index)" class="btn btn-info">Save</a>
+                                            </div>
                                         </td>
-										<td><input type="text" data-ng-model="scheme.completion_date" class="form-control date-picker" /></td>
-										<td><input type="text" data-ng-model="scheme.approved_cost" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.through_forward" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.original_budget" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.final_budget" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.progress_release" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.progress_expenditure" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.completion_date" data-ng-change="update_record($index);changed[$index]=false" class="form-control date-picker" /></td>
+										<td><input type="text" data-ng-model="scheme.approved_cost" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.through_forward" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.original_budget" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.final_budget" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.progress_release" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.progress_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td>100%</td>
 										<td>100.41%</td>
-										<td>100.41%</td>
+										<td style="position:relative">100.41% <br> <a href="" data-ng-click="remove($index)" class="deleteIcon"><i class="fa fa-trash"></i></a></td>
                                     </tr>
                                     <tr>
-										<td colspan="13"><span class="danger" data-ng-if="schemes.length==0">No Rocord found.</span></td>
-                                        <td colspan="2"><a href="" class="btn btn-lg btn-default" data-ng-click="add()">Add New</a></td>
-                                        <td colspan="2"><button type="submit" ng-disabled="processing" class="btn btn-lg btn-default" ng-click="saveScheme()" title="Submit Record"><i class="fa fa-spin fa-gear" ng-show="processing"></i> SUBMIT</button></td>
+                                        <td colspan="17" class="bg-info"><a href="" data-ng-click="add()" class="btn-add-rec"><span class="btn btn-lg btn-default">Add New Record</span></a></td>
+                                        <!-- <td colspan="2"><button type="submit" ng-disabled="processing" class="btn btn-lg btn-default" ng-click="saveScheme()" title="Submit Record"><i class="fa fa-spin fa-gear" ng-show="processing"></i> SUBMIT</button></td> -->
+                                    </tr>
+                                    <tr data-ng-if="schemes.length==0">
+                                        <td colspan="17" class="danger">No Rocord found.</td>
                                     </tr>
                                 </table>
                             </div>
