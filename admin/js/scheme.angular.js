@@ -2,7 +2,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 	function ($scope, $http, $interval, $filter, $timeout) {
 		$scope.filters = {
 			search: "",
-			responsible_user: "0",
+			category: 0,
 			page: 1,
 			total: 0,
 			rows: 25

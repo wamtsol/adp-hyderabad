@@ -33,15 +33,15 @@ $page="scheme_manage";
                                 <li class="col-xs-12 col-lg-12 col-sm-12">
                                     <div>
                                         <form class="form-horizontal" action="" method="get">
-                                            <div class="col-sm-3 col-xs-8">
+                                            <div class="col-sm-2 col-xs-8">
                                                 <input type="text" title="Enter String" data-ng-model="filters.search" data-ng-change="search_records()" id="search" class="form-control" >
                                             </div>
-                                            <!-- <div class="col-sm-3 col-xs-8">
-                                                <select data-ng-model="filters.responsible_user" data-ng-change="search_records()">
-                                                    <option value="0">Select Responsible User</option>
-                                                    <option data-ng-repeat="user in users" value="{{ user.id }}">{{ user.name }}</option>
+                                            <div class="col-sm-3 col-xs-8">
+                                                <select data-ng-model="filters.category" convert-to-number data-ng-change="search_records()">
+                                                    <option value="0">Select Category</option>
+                                                    <option data-ng-repeat="category in categories" value="{{ category.id }}">{{ category.title }}</option>
                                                 </select>
-                                            </div> -->
+                                            </div>
                                         </form>
                                     </div>
                                 </li>

@@ -45,9 +45,15 @@ if(isset($_REQUEST["action"])){
 			}
 			$response = $taluka;
 		break;
-        case "get_schemes":
-            $sql = "select %s from schemes a where status=1 and adp_number like '%".$_REQUEST["search"]."%' order by ts desc";
-            $rs = show_page( $rows, $pageNum, str_replace("%s", "a.*", $sql));
+		case "get_schemes":
+			if(!empty($_REQUEST["category"])){
+				$category = $_REQUEST["category"];
+            	$sql = "select %s from schemes a where status=1 and adp_number like '%".$_REQUEST["search"]."%' and category_id = '".$category."' order by ts desc";
+			}
+			else{
+				$sql = "select %s from schemes a where status=1 and adp_number like '%".$_REQUEST["search"]."%' order by ts desc";
+			}
+			$rs = show_page( $rows, $pageNum, str_replace("%s", "a.*", $sql));
             $schemes = array();
             $total = dofetch(doquery( str_replace("%s", "count(*) as total", $sql), $dblink ));
             if( numrows( $rs ) > 0 ) {
