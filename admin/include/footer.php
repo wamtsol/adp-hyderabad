@@ -27,6 +27,9 @@
 <script type="text/javascript" src="js/date-range-picker/daterangepicker.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
 <script>
+function init_datepicker(){
+	setTimeout(function(){ $('.date-picker').daterangepicker({ singleDatePicker: true, format: 'DD/MM/YYYY'}) }, 500);
+}
 $(document).ready(function(){
 	$('.date-picker').daterangepicker({ singleDatePicker: true, format: 'DD/MM/YYYY'});
 	$('.fancybox_iframe').fancybox({type: 'iframe', width: '90%'});

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2021 at 07:34 PM
+-- Generation Time: Jul 30, 2021 at 01:47 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -45,7 +45,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `admin_type_id`, `username`, `email`, `name`, `monthly_salary`, `password`, `status`, `ts`) VALUES
-(1, 1, 'admin', 'vickyali2@hotmail.com', 'Admin', '0.00', 'Mss123!', 1, '2021-06-14 17:38:23');
+(1, 1, 'admin', 'vickyali2@hotmail.com', 'Admin', '0.00', 'admin', 1, '2021-07-30 10:34:08');
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,14 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`id`, `title`, `status`, `ts`) VALUES
 (1, 'CATEGORY-A', 1, '2021-07-28 17:06:33'),
-(2, 'CATEGORY-B', 1, '2021-07-28 17:06:33');
+(2, 'CATEGORY-B', 1, '2021-07-28 17:06:33'),
+(3, 'Category-C', 1, '2021-07-29 17:51:15'),
+(4, 'Test', 1, '2021-07-29 17:51:42'),
+(5, 'Test-1', 1, '2021-07-29 17:53:53'),
+(6, 'Testttt', 1, '2021-07-29 17:56:18'),
+(7, 'Dert', 1, '2021-07-29 17:59:45'),
+(8, 'dffdf', 1, '2021-07-29 18:01:06'),
+(9, 'hhgg', 1, '2021-07-29 18:12:38');
 
 -- --------------------------------------------------------
 
@@ -334,7 +341,10 @@ CREATE TABLE `schemes` (
 --
 
 INSERT INTO `schemes` (`id`, `sector_id`, `taluka_id`, `category_id`, `adp_number`, `project_description`, `completion_date`, `approved_cost`, `through_forward`, `original_budget`, `final_budget`, `progress_release`, `progress_expenditure`, `status`, `ts`) VALUES
-(1, 1, 1, 1, 'JO16P00071', 'Construction of Graveyard Boundary WallAkhund Abdul Latif at Village Karampur, Taluka Sehwan, DistrictJamshoro.', '2021-07-30', '3000.00', '0.48', '0.48', '0.48', '0.48', '0.48', 1, '2021-07-28 17:08:59');
+(1, 1, 1, 7, 'JO16P00072', 'Construction of Graveyard Boundary WallAkhund Abdul Latif at Village Karampur, Taluka Sehwan, DistrictJamshoro.', '2021-07-30', '3000.00', '0.48', '0.48', '0.48', '0.48', '0.48', 1, '2021-07-29 18:00:33'),
+(48, 2, 2, 8, 'ff3443', 'Test', '2021-07-27', '456.00', '50.60', '60.50', '200.00', '250.00', '120.00', 1, '2021-07-30 10:43:02'),
+(49, 2, 3, 2, '545df', 'dfgdfg', '2021-07-26', '455.00', '6.00', '7868.00', '566.00', '45.00', '4545.00', 1, '2021-07-30 10:42:56'),
+(50, 0, 0, 0, 'DFG', '', '2021-07-25', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 1, '2021-07-30 10:42:47');
 
 -- --------------------------------------------------------
 
@@ -355,7 +365,8 @@ CREATE TABLE `sector` (
 
 INSERT INTO `sector` (`id`, `title`, `status`, `ts`) VALUES
 (1, 'C.C BLOCK / DRAIN', 1, '2021-07-28 17:04:45'),
-(2, 'GOVT: OFFICE BUILDING', 1, '2021-07-28 17:05:09');
+(2, 'GOVT: OFFICE BUILDING', 1, '2021-07-28 17:05:09'),
+(3, 'Sector-1', 1, '2021-07-29 18:38:18');
 
 -- --------------------------------------------------------
 
@@ -376,7 +387,8 @@ CREATE TABLE `taluka` (
 
 INSERT INTO `taluka` (`id`, `title`, `status`, `ts`) VALUES
 (1, 'SEHWAN', 1, '2021-07-28 17:05:50'),
-(2, 'KOTRI', 1, '2021-07-28 17:05:50');
+(2, 'KOTRI', 1, '2021-07-28 17:05:50'),
+(3, 'Taluka-1', 1, '2021-07-29 18:44:45');
 
 -- --------------------------------------------------------
 
@@ -487,7 +499,7 @@ ALTER TABLE `admin_type`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `config_type`
@@ -511,19 +523,19 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `schemes`
 --
 ALTER TABLE `schemes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `sector`
 --
 ALTER TABLE `sector`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `taluka`
 --
 ALTER TABLE `taluka`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `uploads`

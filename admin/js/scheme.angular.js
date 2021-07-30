@@ -135,6 +135,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
         }
 		$scope.add = function( ){
 			$scope.schemes.push(angular.copy( $scope.defaultNewScheme ));
+			init_datepicker();
 			//$scope.newScheme = angular.copy($scope.defaultNewScheme);
 		}
 		$scope.remove = function( position ){
@@ -204,6 +205,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 					$scope.schemes = response.data;
 					$scope.filters.total = response.total;
 					$scope.processing = false;
+					init_datepicker();
 				}
 			});
 		}
