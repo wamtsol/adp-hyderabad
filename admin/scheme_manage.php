@@ -112,7 +112,7 @@ $page="scheme_manage";
 										<td><input type="text" data-ng-model="scheme.progress_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td>100%</td>
 										<td>100.41%</td>
-										<td style="position:relative">100.41% <br> <a href="" data-ng-click="remove($index)" class="deleteIcon"><i class="fa fa-trash"></i></a></td>
+										<td style="position:relative">100.41% <br> <a href="" data-ng-click="deleteScheme($index)" class="deleteIcon" title="Delete Record"><i class="fa fa-trash"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td colspan="17" class="bg-info"><a href="" data-ng-click="add()" class="btn-add-rec"><span class="btn btn-lg btn-default">Add New Record</span></a></td>
