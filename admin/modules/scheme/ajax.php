@@ -62,7 +62,8 @@ if(isset($_REQUEST["action"])){
                         "id" => $r[ "id" ],
                         "sector_id" => (int)$r[ "sector_id" ],
                         "taluka_id" => (int)$r[ "taluka_id" ],
-                        "category_id" => (int)$r[ "category_id" ],
+						"category_id" => (int)$r[ "category_id" ],
+						"approval_year" => (int)$r[ "approval_year" ],
                         "adp_number" => unslash($r[ "adp_number" ]),
                         "project_description" => unslash($r[ "project_description" ]),
                         "completion_date" => date_convert($r[ "completion_date" ]),
@@ -87,10 +88,10 @@ if(isset($_REQUEST["action"])){
             $schemes = json_decode($_POST["schemes"]);
             if( !empty( $schemes->adp_number ) ) {
                 if( !empty( $schemes->id ) ) {
-                    doquery("update schemes set sector_id = '".slash($schemes->sector_id)."', taluka_id = '".slash($schemes->taluka_id)."', category_id = '".slash($schemes->category_id)."', adp_number = '".slash($schemes->adp_number)."', project_description = '".slash($schemes->project_description)."', completion_date = '".date_dbconvert($schemes->completion_date)."', approved_cost = '".slash($schemes->approved_cost)."', through_forward = '".slash($schemes->through_forward)."', original_budget = '".slash($schemes->original_budget)."', final_budget = '".slash($schemes->final_budget)."', progress_release = '".slash($schemes->progress_release)."', progress_expenditure = '".slash($schemes->progress_expenditure)."' where id = '".$schemes->id."'", $dblink);
+                    doquery("update schemes set sector_id = '".slash($schemes->sector_id)."', taluka_id = '".slash($schemes->taluka_id)."', category_id = '".slash($schemes->category_id)."', adp_number = '".slash($schemes->adp_number)."', approval_year = '".slash($schemes->approval_year)."', project_description = '".slash($schemes->project_description)."', completion_date = '".date_dbconvert($schemes->completion_date)."', approved_cost = '".slash($schemes->approved_cost)."', through_forward = '".slash($schemes->through_forward)."', original_budget = '".slash($schemes->original_budget)."', final_budget = '".slash($schemes->final_budget)."', progress_release = '".slash($schemes->progress_release)."', progress_expenditure = '".slash($schemes->progress_expenditure)."' where id = '".$schemes->id."'", $dblink);
                 }
                 else{
-                    doquery("insert into schemes(sector_id, taluka_id, category_id, adp_number, project_description, completion_date, approved_cost, through_forward, original_budget, final_budget, progress_release, progress_expenditure) values('".slash($schemes->sector_id)."', '".slash($schemes->taluka_id)."', '".slash($schemes->category_id)."', '".slash($schemes->adp_number)."', '".slash($schemes->project_description)."', '".date_dbconvert($schemes->completion_date)."', '".slash($schemes->approved_cost)."', '".slash($schemes->through_forward)."', '".slash($schemes->original_budget)."', '".slash($schemes->final_budget)."', '".slash($schemes->progress_release)."', '".slash($schemes->progress_expenditure)."')", $dblink);
+                    doquery("insert into schemes(sector_id, taluka_id, category_id, adp_number, approval_year, project_description, completion_date, approved_cost, through_forward, original_budget, final_budget, progress_release, progress_expenditure) values('".slash($schemes->sector_id)."', '".slash($schemes->taluka_id)."', '".slash($schemes->category_id)."', '".slash($schemes->adp_number)."', '".slash($schemes->approval_year)."', '".slash($schemes->project_description)."', '".date_dbconvert($schemes->completion_date)."', '".slash($schemes->approved_cost)."', '".slash($schemes->through_forward)."', '".slash($schemes->original_budget)."', '".slash($schemes->final_budget)."', '".slash($schemes->progress_release)."', '".slash($schemes->progress_expenditure)."')", $dblink);
                     $id = inserted_id();
                     $r = dofetch(doquery("select * from schemes where id ='".$id."'", $dblink));
                     $schemes = array(

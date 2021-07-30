@@ -21,6 +21,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 			taluka_id: 0,
 			category_id: "",
 			adp_number: "",
+			approval_year: "",
 			project_description: "",
 			completion_date: "",
 			approved_cost: "",

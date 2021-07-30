@@ -75,18 +75,18 @@ $page="scheme_manage";
 											<select data-ng-model="scheme.category_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="category.id as category.title for category in categories">
 												
                                             </select><br>
-                                            <a href="" ng-click="toggleCategory($index)">Add New Category</a>
+                                            <a href="" class="add_item" ng-click="toggleCategory($index)">Add New Category</a>
                                             <div class="new-item" ng-show="scheme.addingNewCategory">
                                                 <input type="text" class="form-control" placeholder="Enter Category Name" ng-model="category.title">
                                                 <a href="" class="btn btn-danger" ng-click="closeAddNewCategory($index)">Cancel</a>
                                                 <a href="" ng-disabled="processing" ng-click="save_category($index)" class="btn btn-info">Save</a>
                                             </div>
 										</td>
-                                        <td>2016</td>
+                                        <td><input type="text" data-ng-model="scheme.approval_year" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
                                         <td>
                                             <select data-ng-model="scheme.sector_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="sector.id as sector.title for sector in sectors">
                                             </select><br>
-                                            <a href="" ng-click="toggleSector($index)">Add New Sector</a>
+                                            <a href="" class="add_item" ng-click="toggleSector($index)">Add New Sector</a>
                                             <div class="new-item" ng-show="scheme.addingNewSector">
                                                 <input type="text" class="form-control" placeholder="Enter Sector Name" ng-model="sector.title">
                                                 <a href="" class="btn btn-danger" ng-click="closeAddNewSector($index)">Cancel</a>
@@ -96,7 +96,7 @@ $page="scheme_manage";
 										<td>
                                             <select data-ng-model="scheme.taluka_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="talk.id as talk.title for talk in talukas">
                                             </select><br>
-                                            <a href="" ng-click="toggleTaluka($index)">Add New Taluka</a>
+                                            <a href="" class="add_item" ng-click="toggleTaluka($index)">Add New Taluka</a>
                                             <div class="new-item" ng-show="scheme.addingNewTaluka">
                                                 <input type="text" class="form-control" placeholder="Enter Taluka Name" ng-model="taluka.title">
                                                 <a href="" class="btn btn-danger" ng-click="closeAddNewTaluka($index)">Cancel</a>
