@@ -4906,7 +4906,7 @@ h2.total-heading {
 .new-item input.form-control {
   margin-bottom: 5px;
 }
-.table.list td:hover a.add_item, .table.list tr:hover a.deleteIcon {
+.table.list tr:hover a.add_item, .table.list tr:hover a.deleteIcon {
     display: block;
 }
 a.add_item, a.deleteIcon {
