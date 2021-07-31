@@ -1,12 +1,12 @@
 <?php
-if(isset($_GET["rows"]))
-	$_SESSION["rows"]=$_GET["rows"];
+if(isset($_REQUEST["rows"]))
+	$_SESSION["rows"]=$_REQUEST["rows"];
 if(isset($_SESSION["rows"]))
 	$rows=$_SESSION["rows"];
 else
 	$rows=25;
-if(isset($_GET['page'])){
-	$pageNum = $_GET['page'];
+if(isset($_REQUEST['page'])){
+	$pageNum = $_REQUEST['page'];
 }
 else{
 	$pageNum=1;

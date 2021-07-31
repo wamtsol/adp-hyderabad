@@ -3,6 +3,9 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 		$scope.filters = {
 			search: "",
 			category: 0,
+			sector: 0,
+			taluka: 0,
+			year: 0,
 			page: 1,
 			total: 0,
 			rows: 25
@@ -13,6 +16,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 		$scope.categories = [];
 		$scope.sectors = [];
 		$scope.talukas = [];
+		$scope.years = [];
 		$scope.processing = true;
 		$scope.newScheme = {};
 		$scope.defaultNewScheme = {
@@ -194,6 +198,9 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 			});
 			$scope.wctAJAX( {action: 'get_taluka'}, function( response ){
 				$scope.talukas = response;
+			});
+			$scope.wctAJAX( {action: 'get_years'}, function( response ){
+				$scope.years = response;
 			});
 		});
 		$scope.get_records = function () {

@@ -55,9 +55,9 @@ $(document).ready(function(){
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/angular-animate.js"></script>
 <script src="js/angular-moment.min.js"></script>
-<script type="text/javascript" src="js/ui-bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/angularjs-datetime-picker.css" />
 <script type="text/javascript" src="js/datetimepicker.js"></script>
+<script type="text/javascript" src="js/ui-bootstrap.min.js"></script>
 <script type="text/javascript" src="js/scheme.angular.js"></script>
 <script type="text/javascript" src="js/angular-chosen.js"></script>
 <script>

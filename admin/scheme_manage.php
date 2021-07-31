@@ -34,12 +34,30 @@ $page="scheme_manage";
                                     <div>
                                         <form class="form-horizontal" action="" method="get">
                                             <div class="col-sm-2 col-xs-8">
-                                                <input type="text" title="Enter String" data-ng-model="filters.search" data-ng-change="search_records()" id="search" class="form-control" >
+                                                <input type="text" title="Enter String" data-ng-model="filters.search" data-ng-change="search_records()" id="search" class="form-control">
                                             </div>
-                                            <div class="col-sm-3 col-xs-8">
+                                            <div class="col-sm-2 col-xs-8">
                                                 <select data-ng-model="filters.category" convert-to-number data-ng-change="search_records()">
                                                     <option value="0">Select Category</option>
                                                     <option data-ng-repeat="category in categories" value="{{ category.id }}">{{ category.title }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-8">
+                                                <select data-ng-model="filters.sector" convert-to-number data-ng-change="search_records()">
+                                                    <option value="0">Select Sector</option>
+                                                    <option data-ng-repeat="sector in sectors" value="{{ sector.id }}">{{ sector.title }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-8">
+                                                <select data-ng-model="filters.taluka" convert-to-number data-ng-change="search_records()">
+                                                    <option value="0">Select Taluka</option>
+                                                    <option data-ng-repeat="taluka in talukas" value="{{ taluka.id }}">{{ taluka.title }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-8">
+                                                <select data-ng-model="filters.year" convert-to-number data-ng-change="search_records()">
+                                                    <option value="0">Select Year</option>
+                                                    <option data-ng-repeat="year in years" value="{{ year.approval_year }}">{{ year.approval_year }}</option>
                                                 </select>
                                             </div>
                                         </form>
@@ -130,7 +148,7 @@ $page="scheme_manage";
                                     </path>
                                 </svg>
                             </div>
-                            <ul uib-pagination total-items="filters.total" ng-model="filters.page" max-size="maxSize" items-per-page="filters.rows" ng-change="get_records()"></ul>
+                            <ul uib-pagination total-items="filters.total" ng-model="filters.page" max-size="maxSize" items-per-page="filters.rows" data-ng-change="get_records()"></ul>
                         </div>
                     </div>
                 </div>

@@ -4389,7 +4389,7 @@ th {
 	padding: 10px 54px;
 }
 .topstats.search_filter{
-	display:none;
+	/* display:none; */
 }
 .checkbox-primary input[type="checkbox"]{
 	margin-left:0px;
