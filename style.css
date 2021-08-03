@@ -166,3 +166,29 @@ span.percent {
 .percent i {
     color: #f00;
 }
+@media (max-width: 980px) {
+    .header h1{ font-size: 24px;}
+    span.year{font-size: 14px;padding: 0 10px; position: relative;}
+    .header h2{font-size: 22px;}
+    .commisioner h3{font-size: 18px;}
+    .commisioner h4{font-size: 14px;}
+    .filters a{margin-bottom: 10px;}
+    .logo {
+        margin: 10px 0;
+    }
+    .summary h2{font-size: 28px;}
+    .summary h3{font-size: 18px;}
+    .summary p{font-size: 16px;}
+    .average{padding: 10px 5px;}
+    .average h4{font-size: 20px;}
+    .av-val.text-right {
+        text-align: left;
+    }
+    .av-val.border-right {
+        border-right: none;
+    }
+    .av-val.text-right{ margin-top: 10px;}
+    .av-val.text-right div {
+        padding: 0;
+    }
+}
