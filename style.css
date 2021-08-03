@@ -95,3 +95,74 @@ span.year {
     font-size: 16px;
     font-weight: 500;
 }
+.average {
+    background: #fefefe;
+    /* border: 1px solid #ccc; */
+    padding: 10px 15px;
+    border-radius: 5px;
+    max-width: 700px;
+}
+.av-icons {
+    float: right;
+}
+.av-amount {
+    font-size: 34px;
+    font-weight: 900;
+    color: #666;
+}
+.av-head {
+    margin: 10px 0 30px;
+}
+.av-title {
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+}
+.average h4 {
+    display: inline-block;
+    margin: 0;
+    font-size: 22px;
+}
+.av-icons ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+.av-icons li {
+    display: inline-block;
+    font-size: 18px;
+    vertical-align: middle;
+    line-height: 20px;
+    padding: 0 5px;
+    color: #ccc;
+    cursor: pointer;
+}
+.av-icons i.fa {
+    vertical-align: middle;
+}
+.border-btm {
+    border-bottom: dotted 2px #ccc;
+    margin: 15px 0;
+}
+span.percent {
+    font-size:20px;
+}
+.av-val.border-right {
+    border-right: dotted 2px #ccc;
+}
+.av-days{
+    text-align: left;
+    margin-top: 20px;
+}
+.percent {
+    font-size: 18px;
+    font-weight: 500;
+}
+.last-month {
+    font-size: 16px;
+    color: #ccc;
+    font-weight: 500;
+}
+.percent i {
+    color: #f00;
+}

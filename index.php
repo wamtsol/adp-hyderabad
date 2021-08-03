@@ -236,6 +236,59 @@ chartsector.render();
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="average">
+                            <div class="av-head">
+                                <h4>Xero Current AR and AP</h4>
+                                <div class="av-icons">
+                                    <ul>
+                                        <li><i class="fa fa-exclamation-circle"></i></li>
+                                        <li><i class="fa fa-comment"></i></li>
+                                        <li><i class="fa fa-ellipsis-v"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-5">
+                                    <div class="av-val border-right">
+                                        <div class="av-amount">$0</div>
+                                        <div class="av-title">Accounts Receivable</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="av-val text-right">
+                                        <div class="col-md-7">
+                                            <div class="av-amount">27</div>
+                                            <div class="av-title">Average debtors days</div>
+                                        </div>
+                                        <div class="av-days col-md-5">
+                                            <div class="percent"><i class="fa fa-caret-up"></i> <span>80%</span></div>
+                                            <div class="last-month">vs 15 last month</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-btm"></div>
+                            <div class="row clearfix">
+                                <div class="col-md-5">
+                                    <div class="av-val border-right">
+                                        <div class="av-amount">$0</div>
+                                        <div class="av-title">Accounts Payable</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="av-val text-right">
+                                        <div class="col-md-7">
+                                            <div class="av-amount">15</div>
+                                            <div class="av-title">Average creditors days</div>
+                                        </div>
+                                        <div class="av-days col-md-5">
+                                            <div class="percent"><i class="fa fa-caret-up"></i> <span>95%</span></div>
+                                            <div class="last-month">vs 8 last month</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
