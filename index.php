@@ -127,16 +127,16 @@ chartsector.render();
                             <thead>
                                 <tr>
                                     <th>Sector <i class="fa fa-caret-down"></i></th>
-                                    <th>Approved Cost <i class="fa fa-caret-down"></i></th>
-                                    <th>Throw Forward as on 01.07.2020 <i class="fa fa-caret-up"></i></th>
-                                    <th>No. of Scheme</th>
-                                    <th>Original Budget FY 2020-21 </th>
-                                    <th>Final  Budget FY 2020-21 </th>
-                                    <th>Prog. Releases </th>
-                                    <th>Prog. Expenditure</th>
-                                    <th>Prog Rel as % of Final Budget</th>
-                                    <th>Prog Exp as % of Final Budget</th>
-                                    <th>% Utilization of Released Amount</th>
+                                    <th>ADP No <i class="fa fa-caret-down"></i></th>
+                                    <th>Description</th>
+                                    <th>Target Date for Completion</th>
+                                    <th>Estim: Cost </th>
+                                    <th>Acutal Exp:</th>
+                                    <th>Throwfwd as on  </th>
+                                    <th>Capi</th>
+                                    <th>Electric</th>
+                                    <th>Rev</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -196,18 +196,19 @@ chartsector.render();
                     <div class="summary-list">
                         <table class="table table-responsive">
                             <thead>
-                                <tr>
-                                    <th>Approved Cost <i class="fa fa-caret-down"></i></th>
-                                    <th>Throw Forward as on 01.07.2020 <i class="fa fa-caret-up"></i></th>
-                                    <th>No. of Scheme</th>
-                                    <th>Original Budget FY 2020-21 </th>
-                                    <th>Final  Budget FY 2020-21 </th>
-                                    <th>Prog. Releases </th>
-                                    <th>Prog. Expenditure</th>
-                                    <th>Prog Rel as % of Final Budget</th>
-                                    <th>Prog Exp as % of Final Budget</th>
-                                    <th>% Utilization of Released Amount</th>
-                                </tr>
+                                    <tr>
+                                        <th>Sector <i class="fa fa-caret-down"></i></th>
+                                        <th>ADP No <i class="fa fa-caret-down"></i></th>
+                                        <th>Description</th>
+                                        <th>Target Date for Completion</th>
+                                        <th>Estim: Cost </th>
+                                        <th>Acutal Exp:</th>
+                                        <th>Throwfwd as on  </th>
+                                        <th>Capi</th>
+                                        <th>Electric</th>
+                                        <th>Rev</th>
+                                        <th>Total</th>
+                                    </tr>
                             </thead>
                             <tbody>
                                 <tr>

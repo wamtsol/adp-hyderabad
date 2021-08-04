@@ -15,6 +15,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 		$scope.errors = [];
 		$scope.categories = [];
 		$scope.sectors = [];
+		$scope.subsectors = [];
 		$scope.talukas = [];
 		$scope.years = [];
 		$scope.processing = true;
@@ -22,6 +23,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 		$scope.defaultNewScheme = {
 			id: 0,
 			sector_id: 0,
+			sub_sector_id: 0,
 			taluka_id: 0,
 			category_id: "",
 			adp_number: "",
@@ -36,6 +38,7 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 			rev: "",
 			addingNewCategory: false,
 			addingNewSector: false,
+			addingNewSubSector: false,
 			addingNewTaluka: false,
 		};
 		$scope.category = {
@@ -99,6 +102,38 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 						$scope.schemes[$index].addingNewSector = false;
 						$scope.schemes[$index].sector_id = response.sector.id;
                         $scope.sector = angular.copy( $scope.sector_placeholder );
+                    }
+                    else{
+                        $scope.box_errors = response.error;
+                    }
+                });
+		}
+		$scope.subsector = {
+			id: "",
+			parent_id: "",
+			title: ""
+		};
+		$scope.subsector_placeholder = {
+            id: "",
+			title: ""
+        };
+		$scope.toggleSubSector = function($index) {
+			$scope.schemes[$index].addingNewSubSector = !$scope.schemes[$index].addingNewSubSector;
+			setTimeout(function(){focus();}, 100);
+		}
+		$scope.closeAddNewSubSector = function($index){
+			$scope.schemes[$index].addingNewSubSector = false;
+			$scope.errors = [];
+			$scope.processing = false;
+		}
+		$scope.save_subsector = function ($index) {
+            $scope.box_errors = [];
+                data = {action: 'save_subsector', subsector: JSON.stringify( $scope.subsector ), parent_id: $scope.schemes[$index].sector_id};
+                $scope.wctAJAX( data, function( response ){
+                    if( response.status == 1 ) {
+						$scope.subsectors.push(response.subsector);
+						$scope.schemes[$index].addingNewSubSector = false;
+						$scope.schemes[$index].sub_sector_id = response.subsector.id;
                     }
                     else{
                         $scope.box_errors = response.error;
@@ -195,6 +230,9 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 			});
 			$scope.wctAJAX( {action: 'get_sector'}, function( response ){
 				$scope.sectors = response;
+			});
+			$scope.wctAJAX( {action: 'get_subsector'}, function( response ){
+				$scope.subsectors = response;
 			});
 			$scope.wctAJAX( {action: 'get_taluka'}, function( response ){
 				$scope.talukas = response;

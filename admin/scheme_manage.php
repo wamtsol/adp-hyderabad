@@ -70,16 +70,17 @@ $page="scheme_manage";
                                         <th width="2%" class="text-center">SN</th>
                                         <th width="10%">ADP No</th>
                                         <th width="15%">Project Description</th>
-										<th width="10%">Category</th>
+										<th width="8%">Category</th>
                                         <th width="5%">Year of Approval</th>
-                                        <th width="10%">Sector</th>
-                                        <th width="10%">Taluka</th>
+                                        <th width="8%">Sector</th>
+                                        <th width="8%">Sub Sector</th>
+                                        <th width="8%">Taluka</th>
                                         <th width="6%">Completion Date</th>
                                         <th width="5%">Estim: Cost</th>
 										<th width="5%">Acutal Exp:</th>
-										<th width="5%">Estimated Expenditure</th>
-										<th width="5%">Throwfwd as on</th>
-										<th width="5%">Capi</th>
+										<th width="5%">Estim Exp</th>
+										<th width="5%">Throw fwd as on</th>
+										<th width="5%">Capital</th>
 										<th width="5%">Electric</th>
 										<th width="5%">Revenue</th>
 										<th width="5%">Total</th>
@@ -111,6 +112,16 @@ $page="scheme_manage";
                                                 <a href="" ng-disabled="processing" ng-click="save_sector($index)" class="btn btn-info">Save</a>
                                             </div>
                                         </td>
+                                        <td>
+                                            <select data-ng-model="scheme.sub_sector_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="subsector.id as subsector.title for subsector in subsectors|filter:{parent_id: scheme.sector_id}:1">
+                                            </select><br>
+                                            <a href="" class="add_item" ng-click="toggleSubSector($index)">Sub Sector</a>
+                                            <div class="new-item" ng-show="scheme.addingNewSubSector">
+                                                <input type="text" class="form-control" placeholder="Enter Sub Sector Name" ng-model="subsector.title">
+                                                <a href="" class="btn btn-danger" ng-click="closeAddNewSubSector($index)">Cancel</a>
+                                                <a href="" ng-disabled="processing" ng-click="save_subsector($index)" class="btn btn-info">Save</a>
+                                            </div>
+                                        </td>
 										<td>
                                             <select data-ng-model="scheme.taluka_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="talk.id as talk.title for talk in talukas">
                                             </select><br>
@@ -133,11 +144,11 @@ $page="scheme_manage";
 										<td style="position:relative">100.41% <br> <a href="" data-ng-click="deleteScheme($index)" class="deleteIcon" title="Delete Record"><i class="fa fa-trash"></i></a></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="17" class="bg-info"><a href="" data-ng-click="add()" class="btn-add-rec"><span class="btn btn-lg btn-default">Add New Record</span></a></td>
+                                        <td colspan="18" class="bg-info"><a href="" data-ng-click="add()" class="btn-add-rec"><span class="btn btn-lg btn-default">Add New Record</span></a></td>
                                         <!-- <td colspan="2"><button type="submit" ng-disabled="processing" class="btn btn-lg btn-default" ng-click="saveScheme()" title="Submit Record"><i class="fa fa-spin fa-gear" ng-show="processing"></i> SUBMIT</button></td> -->
                                     </tr>
                                     <tr data-ng-if="schemes.length==0">
-                                        <td colspan="17" class="danger">No Rocord found.</td>
+                                        <td colspan="18" class="danger">No Rocord found.</td>
                                     </tr>
                                 </table>
                             </div>
