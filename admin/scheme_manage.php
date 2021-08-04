@@ -75,15 +75,15 @@ $page="scheme_manage";
                                         <th width="10%">Sector</th>
                                         <th width="10%">Taluka</th>
                                         <th width="6%">Completion Date</th>
-                                        <th width="5%">Approved Cost</th>
-										<th width="5%">Throw Forward</th>
-										<th width="5%">Original Budget</th>
-										<th width="5%">Final Budget</th>
-										<th width="5%">Prog release</th>
-										<th width="5%">Prog expenditure</th>
-										<th width="5%">Prog Rel as % of Final Budget</th>
-										<th width="5%">Prog Exp as % of Final Budget</th>
-										<th width="5%">% Utilization of Released Amount</th>
+                                        <th width="5%">Estim: Cost</th>
+										<th width="5%">Acutal Exp:</th>
+										<th width="5%">Estimated Expenditure</th>
+										<th width="5%">Throwfwd as on</th>
+										<th width="5%">Capi</th>
+										<th width="5%">Electric</th>
+										<th width="5%">Rev</th>
+										<th width="5%">Total</th>
+										<th width="5%">2021-22</th>
                                     </tr>
                                     <tr data-ng-repeat="scheme in schemes">
                                         <td class="text-center">{{ $index+1 }}</td>
@@ -122,12 +122,12 @@ $page="scheme_manage";
                                             </div>
                                         </td>
 										<td><input type="text" data-ng-model="scheme.completion_date" data-ng-change="update_record($index);changed[$index]=false" class="form-control date-picker" /></td>
-										<td><input type="text" data-ng-model="scheme.approved_cost" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.through_forward" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.original_budget" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.final_budget" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.progress_release" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.progress_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.estim_cost" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.actual_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.estim_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.capital" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.electric" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td><input type="text" data-ng-model="scheme.rev" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td>100%</td>
 										<td>100.41%</td>
 										<td style="position:relative">100.41% <br> <a href="" data-ng-click="deleteScheme($index)" class="deleteIcon" title="Delete Record"><i class="fa fa-trash"></i></a></td>

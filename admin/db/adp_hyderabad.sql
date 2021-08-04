@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2021 at 01:47 PM
+-- Generation Time: Aug 04, 2021 at 03:35 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -98,7 +98,9 @@ INSERT INTO `category` (`id`, `title`, `status`, `ts`) VALUES
 (6, 'Testttt', 1, '2021-07-29 17:56:18'),
 (7, 'Dert', 1, '2021-07-29 17:59:45'),
 (8, 'dffdf', 1, '2021-07-29 18:01:06'),
-(9, 'hhgg', 1, '2021-07-29 18:12:38');
+(9, 'hhgg', 1, '2021-07-29 18:12:38'),
+(10, 'waqar', 1, '2021-07-30 18:16:10'),
+(11, 'waqar', 1, '2021-07-30 18:16:33');
 
 -- --------------------------------------------------------
 
@@ -324,14 +326,15 @@ CREATE TABLE `schemes` (
   `taluka_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `adp_number` varchar(50) NOT NULL,
+  `approval_year` int(4) NOT NULL,
   `project_description` text NOT NULL,
   `completion_date` date NOT NULL,
-  `approved_cost` decimal(10,2) NOT NULL,
-  `through_forward` decimal(10,2) NOT NULL,
-  `original_budget` decimal(10,2) NOT NULL,
-  `final_budget` decimal(10,2) NOT NULL,
-  `progress_release` decimal(10,2) NOT NULL,
-  `progress_expenditure` decimal(10,2) NOT NULL,
+  `estim_cost` decimal(10,2) NOT NULL,
+  `actual_expenditure` decimal(10,2) NOT NULL,
+  `estim_expenditure` decimal(10,2) NOT NULL,
+  `capital` decimal(10,2) NOT NULL,
+  `electric` decimal(10,2) NOT NULL,
+  `rev` decimal(10,2) NOT NULL,
   `status` int(1) NOT NULL DEFAULT 1,
   `ts` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -340,11 +343,11 @@ CREATE TABLE `schemes` (
 -- Dumping data for table `schemes`
 --
 
-INSERT INTO `schemes` (`id`, `sector_id`, `taluka_id`, `category_id`, `adp_number`, `project_description`, `completion_date`, `approved_cost`, `through_forward`, `original_budget`, `final_budget`, `progress_release`, `progress_expenditure`, `status`, `ts`) VALUES
-(1, 1, 1, 7, 'JO16P00072', 'Construction of Graveyard Boundary WallAkhund Abdul Latif at Village Karampur, Taluka Sehwan, DistrictJamshoro.', '2021-07-30', '3000.00', '0.48', '0.48', '0.48', '0.48', '0.48', 1, '2021-07-29 18:00:33'),
-(48, 2, 2, 8, 'ff3443', 'Test', '2021-07-27', '456.00', '50.60', '60.50', '200.00', '250.00', '120.00', 1, '2021-07-30 10:43:02'),
-(49, 2, 3, 2, '545df', 'dfgdfg', '2021-07-26', '455.00', '6.00', '7868.00', '566.00', '45.00', '4545.00', 1, '2021-07-30 10:42:56'),
-(50, 0, 0, 0, 'DFG', '', '2021-07-25', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 1, '2021-07-30 10:42:47');
+INSERT INTO `schemes` (`id`, `sector_id`, `taluka_id`, `category_id`, `adp_number`, `approval_year`, `project_description`, `completion_date`, `estim_cost`, `actual_expenditure`, `estim_expenditure`, `capital`, `electric`, `rev`, `status`, `ts`) VALUES
+(1, 1, 1, 7, 'JO16P00072', 2020, 'Construction of Graveyard Boundary WallAkhund Abdul Latif at Village Karampur, Taluka Sehwan, DistrictJamshoro.', '2021-07-30', '3000.00', '0.48', '0.48', '0.48', '0.48', '0.48', 1, '2021-07-30 18:38:40'),
+(48, 2, 2, 11, 'ff3443', 2021, 'Testdsd', '2021-07-27', '456.00', '50.60', '60.50', '200.00', '250.00', '120.00', 1, '2021-07-30 18:38:22'),
+(49, 2, 3, 2, '545df', 2019, 'dfgdfg', '2021-07-26', '455.00', '6.00', '7868.00', '566.00', '45.00', '4545.00', 1, '2021-07-30 18:38:33'),
+(51, 3, 3, 1, '123456', 2021, 'Waqar', '2021-07-31', '563.00', '963.00', '55.55', '56.66', '400.00', '521.00', 1, '2021-07-31 10:38:34');
 
 -- --------------------------------------------------------
 
@@ -499,7 +502,7 @@ ALTER TABLE `admin_type`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `config_type`
@@ -523,7 +526,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `schemes`
 --
 ALTER TABLE `schemes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `sector`
