@@ -81,9 +81,9 @@ $page="scheme_manage";
 										<th width="5%">Throwfwd as on</th>
 										<th width="5%">Capi</th>
 										<th width="5%">Electric</th>
-										<th width="5%">Rev</th>
+										<th width="5%">Revenue</th>
 										<th width="5%">Total</th>
-										
+										<th width="5%">2021-22</th>
                                     </tr>
                                     <tr data-ng-repeat="scheme in schemes">
                                         <td class="text-center">{{ $index+1 }}</td>
@@ -125,10 +125,10 @@ $page="scheme_manage";
 										<td><input type="text" data-ng-model="scheme.estim_cost" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.actual_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.estim_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td><input type="text" data-ng-model="scheme.capital" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+										<td>100%</td>
+                                        <td><input type="text" data-ng-model="scheme.capital" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.electric" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.rev" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td>100%</td>
 										<td>100.41%</td>
 										<td style="position:relative">100.41% <br> <a href="" data-ng-click="deleteScheme($index)" class="deleteIcon" title="Delete Record"><i class="fa fa-trash"></i></a></td>
                                     </tr>
