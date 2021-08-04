@@ -83,7 +83,7 @@ $page="scheme_manage";
 										<th width="5%">Electric</th>
 										<th width="5%">Rev</th>
 										<th width="5%">Total</th>
-										<th width="5%">2021-22</th>
+										
                                     </tr>
                                     <tr data-ng-repeat="scheme in schemes">
                                         <td class="text-center">{{ $index+1 }}</td>
