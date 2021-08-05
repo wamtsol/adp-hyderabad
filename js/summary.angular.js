@@ -32,6 +32,7 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap']).contro
 			}
 			return total
 		}
+		
 		$scope.onGoingSchemeFilter = function(item){
 			return item.approval_year < 2022;
 		}

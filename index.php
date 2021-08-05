@@ -278,18 +278,18 @@ chartsector.render();
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th><a data-ng-click="sortBy('sector')">Sector <i class="fa fa-caret-down"></i></th>
-                                    <th><a data-ng-click="sortBy('adp_number')">ADP No <i class="fa fa-caret-down"></i></th>
+                                    <th width="10%"><a data-ng-click="sortBy('sector')">Sector <i class="fa fa-caret-down"></i></th>
+                                    <th width="8%"><a data-ng-click="sortBy('adp_number')">ADP No <i class="fa fa-caret-down"></i></th>
                                     <th><a data-ng-click="sortBy('project_description')">Description</th>
-                                    <th><a data-ng-click="sortBy('completion_date')">Target Date for Completion</th>
-                                    <th class="bg-primary"><a data-ng-click="sortBy('estim_cost')">Estim: Cost </th>
-                                    <th class="bg-primary"><a data-ng-click="sortBy('actual_expenditure')">Acutal Exp:</th>
-                                    <th class="bg-primary"><a data-ng-click="sortBy('estim_expenditure')">Estim Exp:</th>
-                                    <th><a class="bg-success">Throwfwd as on  </th>
-                                    <th class="bg-info"><a data-ng-click="sortBy('capital')">Capi</th>
-                                    <th class="bg-info"><a data-ng-click="sortBy('electric')">Electric</th>
-                                    <th class="bg-info"><a data-ng-click="sortBy('rev')">Rev</th>
-                                    <th><a class="bg-info">Total</th>
+                                    <th width="10%"><a data-ng-click="sortBy('completion_date')">Target Date for Completion</th>
+                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_cost')">Estim: Cost </th>
+                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('actual_expenditure')">Acutal Exp:</th>
+                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_expenditure')">Estim Exp:</th>
+                                    <th width="6%"><a class="bg-success">Throwfwd as on  </th>
+                                    <th width="6%" class="bg-info"><a data-ng-click="sortBy('capital')">Capi</th>
+                                    <th width="6%" class="bg-info"><a data-ng-click="sortBy('electric')">Electric</th>
+                                    <th width="6%" class="bg-info"><a data-ng-click="sortBy('rev')">Rev</th>
+                                    <th width="6%"><a class="bg-info">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -301,18 +301,15 @@ chartsector.render();
                                     <td class="bg-primary">{{ scheme.estim_cost }}</td>
                                     <td class="bg-primary">{{ scheme.actual_expenditure }}</td>
                                     <td class="bg-primary">{{ scheme.estim_expenditure }}</td>
-                                    <td class="bg-success">454</td>
+                                    <td class="bg-success">3434</td>
                                     <td class="bg-info">{{ scheme.capital }}</td>
                                     <td class="bg-info">{{ scheme.electric }}</td>
                                     <td class="bg-info">{{ scheme.rev }}</td>
-                                    <td class="bg-info">3434</td>
+                                    <td class="bg-info">4545</td>
                                 </tr>
 
                                 <tr>
-                                    <th>Grand Total</th>
-                                    <!-- <th>445</th> -->
-                                    <th>2,920.920</th>
-                                    <th>1,259.249</th>
+                                    <th colspan="4" class="text-right">Grand Total</th>
                                     <th class="bg-primary">433.577</th>
                                     <th class="bg-primary">619.664</th>
                                     <th class="bg-primary">551.478</th>
@@ -339,7 +336,7 @@ chartsector.render();
             <div class="footer">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>District Development Information System - Jamshoro</p>
+                        <p>District Development Information System - Hyderabad</p>
                     </div>
                     <div class="col-md-6">
                         <p class="text-right">Designed & Maintained By:- Wamtsol.com</p>
