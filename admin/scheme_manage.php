@@ -136,12 +136,12 @@ $page="scheme_manage";
 										<td><input type="text" data-ng-model="scheme.estim_cost" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.actual_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.estim_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td>100%</td>
+										<td>{{scheme.estim_cost - scheme.actual_expenditure}}</td>
                                         <td><input type="text" data-ng-model="scheme.capital" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.electric" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.rev" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td>100.41%</td>
-										<td style="position:relative">100.41% <br> <a href="" data-ng-click="deleteScheme($index)" class="deleteIcon" title="Delete Record"><i class="fa fa-trash"></i></a></td>
+										<td>{{ scheme.capital -- scheme.electric -- scheme.rev }}</td>
+										<td style="position:relative">{{update_total($index)}} <br> <a href="" data-ng-click="deleteScheme($index)" class="deleteIcon" title="Delete Record"><i class="fa fa-trash"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td colspan="18" class="bg-info"><a href="" data-ng-click="add()" class="btn-add-rec"><span class="btn btn-lg btn-default">Add New Record</span></a></td>
