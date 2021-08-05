@@ -187,6 +187,11 @@ angular.module('scheme', ['ngAnimate', 'angularMoment', 'angularjs-datetime-pick
 				$scope.schemes.push( angular.copy( $scope.defaultNewScheme ) );
 			}
 		}
+		$scope.total_throw_forward = function( position ) {
+			total = 0;
+			total = ( parseFloat( $scope.schemes[ position ].estim_cost ) - parseFloat( $scope.schemes[ position ].actual_expenditure ));
+			return total.toFixed(2);
+		}
 		$scope.update_total = function( position ) {
 			total = 0;
 			$scope.schemes[ position ].throuw = ( parseFloat( $scope.schemes[ position ].estim_cost ) - parseFloat( $scope.schemes[ position ].actual_expenditure ));

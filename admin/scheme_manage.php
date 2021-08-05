@@ -136,7 +136,7 @@ $page="scheme_manage";
 										<td><input type="text" data-ng-model="scheme.estim_cost" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.actual_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.estim_expenditure" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
-										<td>{{scheme.estim_cost - scheme.actual_expenditure}}</td>
+										<td>{{total_throw_forward($index)}}</td>
                                         <td><input type="text" data-ng-model="scheme.capital" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.electric" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
 										<td><input type="text" data-ng-model="scheme.rev" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
