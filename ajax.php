@@ -10,7 +10,9 @@ if(isset($_REQUEST["action"])){
 			$category = $_REQUEST["category"];
 			$sector = $_REQUEST["sector"];
 			$taluka = $_REQUEST["taluka"];
+			$group_by_sector = $_REQUEST["group_by_sector"];
 			$extra="";
+			$group_by="";
 			if(!empty($category)){
             	$extra.=" and category_id = '".$category."'";
 			}
@@ -20,7 +22,10 @@ if(isset($_REQUEST["action"])){
 			if(!empty($taluka)){
             	$extra.=" and taluka_id = '".$taluka."'";
 			}
-			$sql = "select %s from schemes a where 1 ".$extra." and status=1 and adp_number like '%".$_REQUEST["search"]."%' and approval_year like '%".$_REQUEST["year"]."%' order by ts desc";
+			if(!empty($group_by_sector)){
+            	$group_by.=" group by sector_id";
+			}
+			$sql = "select %s from schemes a where 1 ".$extra." and status=1 and adp_number like '%".$_REQUEST["search"]."%' and approval_year like '%".$_REQUEST["year"]."%' $group_by order by ts desc";
 			$rs = show_page( $rows, $pageNum, str_replace("%s", "a.*", $sql));
             $schemes = array();
             $total = dofetch(doquery( str_replace("%s", "count(*) as total", $sql), $dblink ));

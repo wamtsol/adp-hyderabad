@@ -8,6 +8,7 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap']).contro
 			year: 0,
 			detail: 0,
 			summary: 0,
+			group_by_sector: 0,
 			page: 1,
 			total: 0,
 			rows: 25
