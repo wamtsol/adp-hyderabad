@@ -3,36 +3,14 @@ if(!defined("APP_START")) die("No Direct Access");
 if(isset($_REQUEST["action"])){
     $response = array();
     switch($_REQUEST["action"]){
-        case 'get_date':
-            $response = date_convert( date( "Y-m-d" ) );
-        break;
-		case "get_schemes":
-			$category = $_REQUEST["category"];
-			$sector = $_REQUEST["sector"];
-			$taluka = $_REQUEST["taluka"];
-			$group_by_sector = $_REQUEST["group_by_sector"];
-			$extra="";
-			$group_by="";
-			if(!empty($category)){
-            	$extra.=" and category_id = '".$category."'";
-			}
-			if(!empty($sector)){
-            	$extra.=" and sector_id = '".$sector."'";
-			}
-			if(!empty($taluka)){
-            	$extra.=" and taluka_id = '".$taluka."'";
-			}
-			if(!empty($group_by_sector)){
-            	$group_by.=" group by sector_id";
-			}
-			$sql = "select %s from schemes a where 1 ".$extra." and status=1 and adp_number like '%".$_REQUEST["search"]."%' and approval_year like '%".$_REQUEST["year"]."%' $group_by order by ts desc";
-			$rs = show_page( $rows, $pageNum, str_replace("%s", "a.*", $sql));
+		case "get_records":
+			$sql = "select * from schemes order by ts desc";
+			$rs = doquery( $sql, $dblink);
             $schemes = array();
-            $total = dofetch(doquery( str_replace("%s", "count(*) as total", $sql), $dblink ));
             if( numrows( $rs ) > 0 ) {
                 while( $r = dofetch( $rs ) ) {
                     $schemes[] = array(
-                        "id" => $r[ "id" ],
+                        "id" => (int)$r[ "id" ],
 						"sector_id" => (int)$r[ "sector_id" ],
 						"sub_sector_id" => (int)$r[ "sub_sector_id" ],
                         "taluka_id" => (int)$r[ "taluka_id" ],
@@ -40,23 +18,52 @@ if(isset($_REQUEST["action"])){
 						"approval_year" => (int)$r[ "approval_year" ],
                         "adp_number" => unslash($r[ "adp_number" ]),
                         "project_description" => unslash($r[ "project_description" ]),
-                        "completion_date" => date_convert($r[ "completion_date" ]),
-                        "estim_cost" => $r[ "estim_cost" ],
-                        "actual_expenditure" => $r[ "actual_expenditure" ],
-                        "estim_expenditure" => $r[ "estim_expenditure" ],
-                        "capital" => $r[ "capital" ],
-                        "electric" => $r[ "electric" ],
-                        "rev" => $r[ "rev" ],
-						"sector" => get_field($r[ "sector_id" ], "sector", "title"),
-						"subsector" => get_field($r[ "sub_sector_id" ], "sector", "title"),
-                        "taluka" => get_field($r[ "taluka_id" ], "taluka", "title"),
-                        "category" => get_field($r[ "category_id" ], "category", "title"),
+                        "completion_date" => strtotime($r[ "completion_date" ])*1000,
+                        "estim_cost" => (float)$r[ "estim_cost" ],
+                        "actual_expenditure" => (float)$r[ "actual_expenditure" ],
+                        "estim_expenditure" => (float)$r[ "estim_expenditure" ],
+                        "capital" => (float)$r[ "capital" ],
+                        "electric" => (float)$r[ "electric" ],
+                        "rev" => (float)$r[ "rev" ],
+                    );
+                }
+            }
+            $rs = doquery( "select * from sector", $dblink);
+            $sectors = array();
+            if( numrows( $rs ) > 0 ) {
+                while( $r = dofetch( $rs ) ) {
+                    $sectors[] = array(
+                        "id" => (int)$r[ "id" ],
+                        "parent_id" => (int)$r[ "parent_id" ],
+                        "title" => unslash($r[ "title" ]),
+                    );
+                }
+            }
+            $rs = doquery( "select * from taluka", $dblink);
+            $talukas = array();
+            if( numrows( $rs ) > 0 ) {
+                while( $r = dofetch( $rs ) ) {
+                    $talukas[] = array(
+                        "id" => (int)$r[ "id" ],
+                        "title" => unslash($r[ "title" ]),
+                    );
+                }
+            }
+            $rs = doquery( "select * from category", $dblink);
+            $categories = array();
+            if( numrows( $rs ) > 0 ) {
+                while( $r = dofetch( $rs ) ) {
+                    $categories[] = array(
+                        "id" => (int)$r[ "id" ],
+                        "title" => unslash($r[ "title" ]),
                     );
                 }
             }
             $response = [
-                "data" => $schemes,
-                "total" => $total["total"],
+                "schemes" => $schemes,
+                "talukas" => $talukas,
+                "categories" => $categories,
+                "sector" => $sectors,
             ];
         break;
     }

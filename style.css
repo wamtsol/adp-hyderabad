@@ -163,8 +163,11 @@ span.percent {
     color: #ccc;
     font-weight: 500;
 }
-.percent i {
+.text-red {
     color: #f00;
+}
+.text-green {
+    color: #2cbd3e;
 }
 
 @media (max-width: 980px) {
