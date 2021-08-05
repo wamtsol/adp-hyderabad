@@ -63,7 +63,7 @@ if(isset($_REQUEST["action"])){
                 "schemes" => $schemes,
                 "talukas" => $talukas,
                 "categories" => $categories,
-                "sector" => $sectors,
+                "sectors" => $sectors,
             ];
         break;
     }

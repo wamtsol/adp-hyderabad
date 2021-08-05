@@ -97,37 +97,34 @@ chartsector.render();
                 <div class="filters">
                     <div class="row margin-b-10">
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-default">Click here to main page</a>
+                            <a href="#" class="btn btn-md btn-default" data-ng-click="showSummary(0)">Click here to main page</a>
                             <!-- <a href="#" class="btn btn-md btn-info">Summary</a> -->
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-success">Sector Wise Summary On-going</a>
+                            <a href="#" class="btn btn-md btn-success" data-ng-click="showSummary(1)">Sector Wise Summary On-going</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-info">Taluka Wise Summary On-going</a>
+                            <a href="#" class="btn btn-md btn-info" data-ng-click="showSummary(2)">Taluka Wise Summary On-going</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-warning">Detailed Report On-going</a>
+                            <a href="#" class="btn btn-md btn-warning" data-ng-click="showDetail(0)">Detailed Report On-going</a>
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-3"></div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-default">Summary</a>
-                            <!-- <a href="#" class="btn btn-md btn-info">Summary</a> -->
+                            <a href="#" class="btn btn-md btn-success" data-ng-click="showSummary(3)">Sector Wise Summary New Scheme</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-success">Sector Wise Summary New Scheme</a>
+                            <a href="#" class="btn btn-md btn-info" data-ng-click="showSummary(4)">Taluka Wise Summary New Scheme</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-info">Taluka Wise Summary New Scheme</a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-warning">Detailed Report New Scheme</a>
+                            <a href="#" class="btn btn-md btn-warning" data-ng-click="showDetail(1)">Detailed Report New Scheme</a>
                         </div>
                     </div>
                 </div>
-                <div class="summary" data-ng-if="currentScheme==0">
-                    <div class="row clearfix">
+                <div class="summary">
+                    <div class="row clearfix" data-ng-if="currentScreen == 0">
                         <div class="col-md-12">
                             <h2>Summary</h2>
                             <h3>For District ADP 2020-2021</h3>
@@ -227,30 +224,80 @@ chartsector.render();
                             </div>
                         </div>
                     </div>
-                    <div class="summary-list table-responsive">
-                        <table class="table">
-                            <thead>
+                    <div data-ng-if="currentScreen == 1">
+                        <h2>Summary</h2>
+                        <h3>For District ADP 2020-2021</h3>
+                        <p>New Scheme</p>
+                        <div class="summary-list table-responsive">
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <!-- <th>Sector <i class="fa fa-caret-down"></i></th> -->
+                                    <th>Sector <i class="fa fa-caret-down"></i></th>
                                     <th>ADP No <i class="fa fa-caret-down"></i></th>
                                     <th>Description</th>
                                     <th>Target Date for Completion</th>
-                                    <th class="bg-primary">Estim: Cost </th>
-                                    <th class="bg-primary">Acutal Exp:</th>
-                                    <th class="bg-primary">Estim Exp:</th>
-                                    <th class="bg-success">Throwfwd as on  </th>
-                                    <th class="bg-info">Capi</th>
-                                    <th class="bg-info">Electric</th>
-                                    <th class="bg-info">Rev</th>
-                                    <th class="bg-info">Total</th>
+                                    <th>Estim: Cost </th>
+                                    <th>Acutal Exp:</th>
+                                    <th>Throwfwd as on  </th>
+                                    <th>Capi</th>
+                                    <th>Electric</th>
+                                    <th>Rev</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>2,920.92</td>
+                                    <td>1,259.249</td>
+                                    <td>445</td>
+                                    <td>433.577</td>
+                                    <td>619.664</td>
+                                    <td>551.478</td>
+                                    <td>503.586</td>
+                                    <td>89%</td>
+                                    <td>81.27%</td>
+                                    <td>91.32%</td>
+                                </tr>
+                                <tr>
+                                    <td>2,920.92</td>
+                                    <td>1,259.249</td>
+                                    <td>445</td>
+                                    <td>433.577</td>
+                                    <td>619.664</td>
+                                    <td>551.478</td>
+                                    <td>503.586</td>
+                                    <td>89%</td>
+                                    <td>81.27%</td>
+                                    <td>91.32%</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="summary-list table-responsive" data-ng-if="currentScreen == 2">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><a data-ng-click="sortBy('sector')">Sector <i class="fa fa-caret-down"></i></th>
+                                    <th><a data-ng-click="sortBy('adp_number')">ADP No <i class="fa fa-caret-down"></i></th>
+                                    <th><a data-ng-click="sortBy('project_description')">Description</th>
+                                    <th><a data-ng-click="sortBy('completion_date')">Target Date for Completion</th>
+                                    <th class="bg-primary"><a data-ng-click="sortBy('estim_cost')">Estim: Cost </th>
+                                    <th class="bg-primary"><a data-ng-click="sortBy('actual_expenditure')">Acutal Exp:</th>
+                                    <th class="bg-primary"><a data-ng-click="sortBy('estim_expenditure')">Estim Exp:</th>
+                                    <th><a class="bg-success">Throwfwd as on  </th>
+                                    <th class="bg-info"><a data-ng-click="sortBy('capital')">Capi</th>
+                                    <th class="bg-info"><a data-ng-click="sortBy('electric')">Electric</th>
+                                    <th class="bg-info"><a data-ng-click="sortBy('rev')">Rev</th>
+                                    <th><a class="bg-info">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="scheme in schemes">
-                                    <!-- <td>C.C BLOCK / DRAIN</td> -->
+                                <tr data-ng-repeat="scheme in schemes|filter:detailFilter:true|orderBy:orderByCol:orderDirection">
+                                    <td>{{ scheme.sector_id > 0 ? (sectors|filter:{id: scheme.sector_id}:1)[0].title : "--" }}</td>
                                     <td>{{ scheme.adp_number }}</td>
                                     <td>{{ scheme.project_description }}</td>
-                                    <td>{{ scheme.completion_date }}</td>
+                                    <td>{{ scheme.completion_date|date }}</td>
                                     <td class="bg-primary">{{ scheme.estim_cost }}</td>
                                     <td class="bg-primary">{{ scheme.actual_expenditure }}</td>
                                     <td class="bg-primary">{{ scheme.estim_expenditure }}</td>
@@ -260,7 +307,7 @@ chartsector.render();
                                     <td class="bg-info">{{ scheme.rev }}</td>
                                     <td class="bg-info">3434</td>
                                 </tr>
-                                
+
                                 <tr>
                                     <th>Grand Total</th>
                                     <!-- <th>445</th> -->
@@ -286,54 +333,6 @@ chartsector.render();
                                 <div id="sectorWiseUtilize" style="height: 300px; width: 100%;"></div>
                             </div>
                         </div>
-                    </div>
-                    <h2>Summary</h2>
-                    <h3>For District ADP 2020-2021</h3>
-                    <p>New Scheme</p>
-                    <div class="summary-list table-responsive">
-                        <table class="table">
-                            <thead>
-                                    <tr>
-                                        <th>Sector <i class="fa fa-caret-down"></i></th>
-                                        <th>ADP No <i class="fa fa-caret-down"></i></th>
-                                        <th>Description</th>
-                                        <th>Target Date for Completion</th>
-                                        <th>Estim: Cost </th>
-                                        <th>Acutal Exp:</th>
-                                        <th>Throwfwd as on  </th>
-                                        <th>Capi</th>
-                                        <th>Electric</th>
-                                        <th>Rev</th>
-                                        <th>Total</th>
-                                    </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2,920.92</td>
-                                    <td>1,259.249</td>
-                                    <td>445</td>
-                                    <td>433.577</td>
-                                    <td>619.664</td>
-                                    <td>551.478</td>
-                                    <td>503.586</td>
-                                    <td>89%</td>
-                                    <td>81.27%</td>
-                                    <td>91.32%</td>
-                                </tr>
-                                <tr>
-                                    <td>2,920.92</td>
-                                    <td>1,259.249</td>
-                                    <td>445</td>
-                                    <td>433.577</td>
-                                    <td>619.664</td>
-                                    <td>551.478</td>
-                                    <td>503.586</td>
-                                    <td>89%</td>
-                                    <td>81.27%</td>
-                                    <td>91.32%</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap']).contro
 		$scope.categories = [];
 		$scope.processing = true;
 		$scope.currentScreen = 0;
+		$scope.summaryType = 0;
+		$scope.detailType = 0;
 		angular.element(document).ready(function () {
 			$scope.get_records();
 		});
@@ -35,6 +37,46 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap']).contro
 		}
 		$scope.newSchemeFilter = function(item){
 			return item.approval_year >= 2022;
+		}
+		$scope.showSummary = function(type){
+			if(type == 0){
+				$scope.currentScreen = 0;
+			}
+			else{
+				$scope.summaryType = type;
+				$scope.currentScreen = 1;
+			}
+		}
+		$scope.showSummary = function(type){
+			$scope.currentScreen = 1;
+		}
+		$scope.showDetail = function(type){
+			$scope.currentScreen = 2;
+			$scope.detailType = type;
+		}
+		$scope.summaryFilter = function(){
+			if($scope.summaryType == 1){
+				return item.approval_year < 2022;
+			}
+		}
+		$scope.detailFilter = function(item){
+			if($scope.detailType == 0){
+				return item.approval_year < 2022;
+			}
+			else{
+				return item.approval_year >= 2022;
+			}
+		}
+		$scope.orderByCol = 'id';
+		$scope.orderDirection = false;
+		$scope.sortBy = function(col){
+			if($scope.orderByCol == col){
+				$scope.orderDirection = !$scope.order
+			}
+			else{
+				$scope.orderByCol = col;
+				$scope.orderDirection = false;
+			}
 		}
 		$scope.wctAJAX = function( wctData, wctCallback ) {
 			wctRequest = {
