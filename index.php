@@ -11,7 +11,7 @@ include("ajax.php");
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="images/favicon.png" />
-<title>DDIS-Hyderabad-2020-21</title>
+<title>MIS System for Annual Development Program - District Hyderabad 2020-21</title>
 <link type="text/css" rel="stylesheet" href="admin/css/font-awesome.min.css" />
 <link type="text/css" rel="stylesheet" href="admin/css/font-awesome.css" />
 <link type="text/css" rel="stylesheet"  href="admin/css/bootstrap.css" />
@@ -76,19 +76,19 @@ chartsector.render();
         <div class="main">
             <div class="header">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         <div class="logo"><img src="images/logo.png"></div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-xs-10">
                         <div class="district">
                             <h1>ANNUAL DEVELOPMENT PROGRAMME</h1>
-                            <h2>District Hyderabad</h2>
+                            <h2>DISTRICT HYDERABAD</h2>
                             <span class="year">2020-2021</span>
                             
                         </div>
                         <div class="commisioner">
-                            <h3>DEPUTY COMMISSIONER Hyderabad</h3>
-                            <h4>ADP Information System</h4>
+                            <h3>DEPUTY COMMISSIONER HYDERABAD</h3>
+                            <h4>MIS System for Annual Development Program - District Hyderabad 2020-21</h4>
                         </div>
                     </div>
                 </div>
@@ -126,36 +126,31 @@ chartsector.render();
                         </div>
                     </div>
                 </div>
-                <div class="summary">
+                <div class="summary" data-ng-if="currentScheme==0">
                     <div class="row clearfix">
-                        <div class="col-md-7" style="float:right">
+                        <div class="col-md-12">
+                            <h2>Summary</h2>
+                            <h3>For District ADP 2020-2021</h3>
+                            <p>On-Going Scheme</p>
                             <div class="average">
-                                <div class="av-head">
-                                    <h4>Xero Current AR and AP</h4>
-                                    <div class="av-icons">
-                                        <ul>
-                                            <li><i class="fa fa-exclamation-circle"></i></li>
-                                            <li><i class="fa fa-comment"></i></li>
-                                            <li><i class="fa fa-ellipsis-v"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
                                 <div class="row clearfix">
                                     <div class="col-md-5">
                                         <div class="av-val border-right">
-                                            <div class="av-amount">$0</div>
-                                            <div class="av-title">Accounts Receivable</div>
+                                            <div class="av-amount">{{ sum('estim_cost', onGoingSchemeFilter)|currency:'Rs. ' }}</div>
+                                            <div class="av-title">Estimated Cost
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="av-val text-right">
                                             <div class="col-md-7">
-                                                <div class="av-amount">27</div>
-                                                <div class="av-title">Average debtors days</div>
+                                                <div class="av-amount">{{ sum('estim_expenditure', onGoingSchemeFilter)|currency:'Rs. ' }}</div>
+                                                <div class="av-title">Estimated expenditure upto June 2021</div>
                                             </div>
                                             <div class="av-days col-md-5">
-                                                <div class="percent"><i class="fa fa-caret-up"></i> <span>80%</span></div>
-                                                <div class="last-month">vs 15 last month</div>
+                                                <div class="percent"><i class="fa" data-ng-class="{'fa-caret-down text-green': (sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))<0, 'fa-caret-up text-red': (sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))>=0}"></i> <span>{{ (((sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))/sum('estim_cost', onGoingSchemeFilter))*100)|currency:'' }}%</span></div>
+                                                <div class="last-month" data-ng-if="(sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))<0">vs {{ (sum('estim_cost', onGoingSchemeFilter)-sum('estim_expenditure', onGoingSchemeFilter))|currency:'Rs. ' }} less than the expected cost.</div>
+                                                <div class="last-month" data-ng-if="(sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))>=0">vs {{ (sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))|currency:'Rs. ' }} greater than the expected cost.</div>
                                             </div>
                                         </div>
                                     </div>
@@ -164,34 +159,76 @@ chartsector.render();
                                 <div class="row clearfix">
                                     <div class="col-md-5">
                                         <div class="av-val border-right">
-                                            <div class="av-amount">$0</div>
-                                            <div class="av-title">Accounts Payable</div>
+                                            <div class="av-amount">{{ sum('actual_expenditure', onGoingSchemeFilter)|currency:'Rs. ' }}</div>
+                                            <div class="av-title">Actual Expenditure Upto June 2020</div>
                                         </div>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="av-val text-right">
                                             <div class="col-md-7">
-                                                <div class="av-amount">15</div>
-                                                <div class="av-title">Average creditors days</div>
+                                                <div class="av-amount">{{ sum('estim_cost', onGoingSchemeFilter)-sum('estim_expenditure', onGoingSchemeFilter)|currency:'Rs. ' }}</div>
+                                                <div class="av-title">Through Forward as on 01/07/2020</div>
                                             </div>
                                             <div class="av-days col-md-5">
-                                                <div class="percent"><i class="fa fa-caret-up"></i> <span>95%</span></div>
-                                                <div class="last-month">vs 8 last month</div>
+                                                <div class="percent"><i class="fa" data-ng-class="{'fa-caret-down text-green': (sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))<0, 'fa-caret-up text-red': (sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))>=0}"></i> <span>{{ (((sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))/sum('estim_cost', onGoingSchemeFilter))*100)|currency:'' }}%</span></div>
+                                                <div class="last-month" data-ng-if="(sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))<0">vs {{ (sum('estim_cost', onGoingSchemeFilter)-sum('estim_expenditure', onGoingSchemeFilter))|currency:'Rs. ' }} less than the expected cost.</div>
+                                                <div class="last-month" data-ng-if="(sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))>=0">vs {{ (sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))|currency:'Rs. ' }} greater than the expected cost.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 50px">New Scheme</p>
+                            <div class="average">
+                                <div class="row clearfix">
+                                    <div class="col-md-5">
+                                        <div class="av-val border-right">
+                                            <div class="av-amount">{{ sum('estim_cost', newSchemeFilter)|currency:'Rs. ' }}</div>
+                                            <div class="av-title">Estimated Cost
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="av-val text-right">
+                                            <div class="col-md-7">
+                                                <div class="av-amount">{{ sum('estim_expenditure', newSchemeFilter)|currency:'Rs. ' }}</div>
+                                                <div class="av-title">Estimated expenditure upto June 2021</div>
+                                            </div>
+                                            <div class="av-days col-md-5">
+                                                <div class="percent"><i class="fa" data-ng-class="{'fa-caret-down text-green': (sum('estim_expenditure', newSchemeFilter)-sum('estim_cost', newSchemeFilter))<0, 'fa-caret-up text-red': (sum('estim_expenditure', newSchemeFilter)-sum('estim_cost', newSchemeFilter))>=0}"></i> <span>{{ (((sum('estim_expenditure', newSchemeFilter)-sum('estim_cost', newSchemeFilter))/sum('estim_cost', newSchemeFilter))*100)|currency:'' }}%</span></div>
+                                                <div class="last-month" data-ng-if="(sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))<0">vs {{ (sum('estim_cost', newSchemeFilter)-sum('estim_expenditure', newSchemeFilter))|currency:'Rs. ' }} less than the expected cost.</div>
+                                                <div class="last-month" data-ng-if="(sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', onGoingSchemeFilter))>=0">vs {{ (sum('estim_expenditure', newSchemeFilter)-sum('estim_cost', newSchemeFilter))|currency:'Rs. ' }} greater than the expected cost.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-btm"></div>
+                                <div class="row clearfix">
+                                    <div class="col-md-5">
+                                        <div class="av-val border-right">
+                                            <div class="av-amount">{{ sum('actual_expenditure', newSchemeFilter)|currency:'Rs. ' }}</div>
+                                            <div class="av-title">Actual Expenditure Upto June 2020</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="av-val text-right">
+                                            <div class="col-md-7">
+                                                <div class="av-amount">{{ sum('estim_cost', newSchemeFilter)-sum('estim_expenditure', newSchemeFilter)|currency:'Rs. ' }}</div>
+                                                <div class="av-title">Through Forward as on 01/07/2020</div>
+                                            </div>
+                                            <div class="av-days col-md-5">
+                                                <div class="percent"><i class="fa" data-ng-class="{'fa-caret-down text-green': (sum('estim_expenditure', newSchemeFilter)-sum('estim_cost', newSchemeFilter))<0, 'fa-caret-up text-red': (sum('estim_expenditure', newSchemeFilter)-sum('estim_cost', newSchemeFilter))>=0}"></i> <span>{{ (((sum('estim_expenditure', newSchemeFilter)-sum('estim_cost', newSchemeFilter))/sum('estim_cost', newSchemeFilter))*100)|currency:'' }}%</span></div>
+                                                <div class="last-month" data-ng-if="(sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', newSchemeFilter))<0">vs {{ (sum('estim_cost', newSchemeFilter)-sum('estim_expenditure', newSchemeFilter))|currency:'Rs. ' }} less than the expected cost.</div>
+                                                <div class="last-month" data-ng-if="(sum('estim_expenditure', onGoingSchemeFilter)-sum('estim_cost', newSchemeFilter))>=0">vs {{ (sum('estim_expenditure', newSchemeFilter)-sum('estim_cost', newSchemeFilter))|currency:'Rs. ' }} greater than the expected cost.</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <h2 style="margin: 44% 0 0 0;">Summary</h2>
-                            
-                        </div>
                     </div>
-                    <h3>For District ADP 2020-2021</h3>
-                            <p>On-Going Scheme</p>
-                    <div class="summary-list">
-                        <table class="table table-responsive">
+                    <div class="summary-list table-responsive">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <!-- <th>Sector <i class="fa fa-caret-down"></i></th> -->
@@ -253,8 +290,8 @@ chartsector.render();
                     <h2>Summary</h2>
                     <h3>For District ADP 2020-2021</h3>
                     <p>New Scheme</p>
-                    <div class="summary-list">
-                        <table class="table table-responsive">
+                    <div class="summary-list table-responsive">
+                        <table class="table">
                             <thead>
                                     <tr>
                                         <th>Sector <i class="fa fa-caret-down"></i></th>

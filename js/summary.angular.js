@@ -1,46 +1,40 @@
 angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap']).controller('summaryController',
 	function ($scope, $http, $interval, $filter, $timeout) {
-		$scope.filters = {
-			search: "",
-			category: 0,
-			sector: 0,
-			taluka: 0,
-			year: 0,
-			detail: 0,
-			summary: 0,
-			group_by_sector: 0,
-			page: 1,
-			total: 0,
-			rows: 25
-		};
-		$scope.maxSize = 5;
 		$scope.schemes = [];
+		$scope.talukas = [];
+		$scope.sectors = [];
+		$scope.categories = [];
 		$scope.processing = true;
+		$scope.currentScreen = 0;
 		angular.element(document).ready(function () {
 			$scope.get_records();
 		});
 		$scope.get_records = function () {
 			$scope.processing = true;
-			const data = angular.copy($scope.filters);
-			data.action = 'get_schemes';
 			$scope.schemes = [];
-			$scope.wctAJAX( data, function( response ){
+			$scope.wctAJAX( {action: 'get_records'}, function( response ){
 				if($scope.processing){
-					$scope.schemes = response.data;
-					$scope.filters.total = response.total;
+					$scope.schemes = response.schemes;
+					$scope.talukas = response.talukas;
+					$scope.sectors = response.sectors;
+					$scope.categories = response.categories;
 					$scope.processing = false;
 				}
 			});
 		}
-		$scope.searchPromise;
-		$scope.search_records = function(){
-			$scope.filters.page = 1;
-			if($scope.searchPromise){
-				$timeout.cancel($scope.searchPromise);
+		$scope.sum = function(key, filter){
+			let schemes = $filter('filter')($scope.schemes, filter, true);
+			let total = 0;
+			for(let i = 0; i < schemes.length; i++){
+				total += schemes[i][key];
 			}
-			$scope.searchPromise = $timeout(function(){
-				$scope.get_records();
-			}, 200);
+			return total
+		}
+		$scope.onGoingSchemeFilter = function(item){
+			return item.approval_year < 2022;
+		}
+		$scope.newSchemeFilter = function(item){
+			return item.approval_year >= 2022;
 		}
 		$scope.wctAJAX = function( wctData, wctCallback ) {
 			wctRequest = {
