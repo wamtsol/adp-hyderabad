@@ -17,6 +17,9 @@ include("ajax.php");
 <link type="text/css" rel="stylesheet"  href="admin/css/bootstrap.css" />
 <link type="text/css" rel="stylesheet"  href="style.css" />
 <script src="js/canvasjs.min.js"></script>
+<script type="text/javascript" src="admin/js/jquery.js"></script>
+<link href="admin/js/chosen/chosen.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="admin/js/chosen/chosen.jquery.js"></script>
 <script>
 window.onload = function() {
 
@@ -110,7 +113,7 @@ chartsector.render();
                             <a href="#" class="btn btn-md btn-warning" data-ng-click="showDetail(0)">Detailed Report On-going</a>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row margin-b-10">
                         <div class="col-md-3"></div>
                         <div class="col-md-3">
                             <a href="#" class="btn btn-md btn-success" data-ng-click="showSummary(3)">Sector Wise Summary New Scheme</a>
@@ -120,6 +123,23 @@ chartsector.render();
                         </div>
                         <div class="col-md-3">
                             <a href="#" class="btn btn-md btn-warning" data-ng-click="showDetail(1)">Detailed Report New Scheme</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Select Sector</label>
+                            <select data-ng-model="filters.sector" ng-options="sector.id as sector.title for sector in sectors" chosen multiple>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Select Taluka</label>
+                            <select data-ng-model="filters.taluka" ng-options="taluka.id as taluka.title for taluka in talukas" chosen multiple>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Select Category</label>
+                            <select data-ng-model="filters.category" ng-options="category.id as category.title for category in categories" chosen multiple>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -351,5 +371,6 @@ chartsector.render();
 <script src="admin/js/angular-moment.min.js"></script>
 <script type="text/javascript" src="admin/js/ui-bootstrap.min.js"></script>
 <script type="text/javascript" src="js/summary.angular.js"></script>
+<script type="text/javascript" src="admin/js/angular-chosen.js"></script>
 </body>
 </html>

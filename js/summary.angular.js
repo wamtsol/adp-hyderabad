@@ -1,8 +1,13 @@
-angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap']).controller('summaryController',
+angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localytics.directives']).controller('summaryController',
 	function ($scope, $http, $interval, $filter, $timeout) {
 		$scope.schemes = [];
 		$scope.talukas = [];
 		$scope.sectors = [];
+		$scope.filters = {
+			sector: 0,
+			taluka: 0,
+			category: 0
+		}
 		$scope.categories = [];
 		$scope.processing = true;
 		$scope.currentScreen = 0;
