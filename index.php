@@ -240,6 +240,7 @@ chartsector.render();
                                 </tr>
                             </tbody>
                         </table>
+                        <ul uib-pagination total-items="filters.total" ng-model="filters.page" max-size="maxSize" items-per-page="filters.rows" data-ng-change="get_records()"></ul>
                         <div class="row">
                             <div class="col-md-6">
                                 <div id="sectorWiseRelease" style="height: 300px; width: 100%;"></div>
