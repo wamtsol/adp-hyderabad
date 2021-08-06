@@ -100,29 +100,29 @@ chartsector.render();
                 <div class="filters">
                     <div class="row margin-b-10">
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-default" data-ng-click="showSummary(0)">Click here to main page</a>
+                            <a href="" class="btn btn-md btn-default" data-ng-click="showSummary(0)">Click here to main page</a>
                             <!-- <a href="#" class="btn btn-md btn-info">Summary</a> -->
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-success" data-ng-click="showSummary(1)">Sector Wise Summary On-going</a>
+                            <a href="" class="btn btn-md btn-success" data-ng-click="showSummary(1)">Sector Wise Summary On-going</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-info" data-ng-click="showSummary(2)">Taluka Wise Summary On-going</a>
+                            <a href="" class="btn btn-md btn-info" data-ng-click="showSummary(2)">Taluka Wise Summary On-going</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-warning" data-ng-click="showDetail(0)">Detailed Report On-going</a>
+                            <a href="" class="btn btn-md btn-warning" data-ng-click="showDetail(0)">Detailed Report On-going</a>
                         </div>
                     </div>
                     <div class="row margin-b-10">
                         <div class="col-md-3"></div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-success" data-ng-click="showSummary(3)">Sector Wise Summary New Scheme</a>
+                            <a href="" class="btn btn-md btn-success" data-ng-click="showSummary(3)">Sector Wise Summary New Scheme</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-info" data-ng-click="showSummary(4)">Taluka Wise Summary New Scheme</a>
+                            <a href="" class="btn btn-md btn-info" data-ng-click="showSummary(4)">Taluka Wise Summary New Scheme</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-md btn-warning" data-ng-click="showDetail(1)">Detailed Report New Scheme</a>
+                            <a href="" class="btn btn-md btn-warning" data-ng-click="showDetail(1)">Detailed Report New Scheme</a>
                         </div>
                     </div>
                     <div class="row" data-ng-if="currentScreen == 2">
@@ -143,9 +143,7 @@ chartsector.render();
                         </div>
                         <div class="col-md-3">
                             <label>Select Year</label>
-                            <select data-ng-model="filters.year" convert-to-number multiple chosen>
-                                
-                                <option data-ng-repeat="year in years" value="{{ year.approval_year }}">{{ year.approval_year }}</option>
+                            <select data-ng-model="filters.year" multiple chosen ng-options="year.approval_year as year.approval_year for year in years">
                             </select>
                         </div>
                     </div>
@@ -155,6 +153,8 @@ chartsector.render();
                         <div class="col-md-12">
                             <h2>Summary</h2>
                             <h3>For District ADP 2020-2021</h3>
+                        </div>
+                        <div class="col-md-6">
                             <p>On-Going Scheme</p>
                             <div class="average">
                                 <div class="row clearfix">
@@ -166,7 +166,7 @@ chartsector.render();
                                         </div>
                                     </div>
                                     <div class="col-md-7">
-                                        <div class="av-val text-right">
+                                        <div class="av-val text-right row">
                                             <div class="col-md-7">
                                                 <div class="av-amount">{{ sum('estim_expenditure', onGoingSchemeFilter)|currency:'Rs. ' }}</div>
                                                 <div class="av-title">Estimated expenditure upto June 2021</div>
@@ -188,7 +188,7 @@ chartsector.render();
                                         </div>
                                     </div>
                                     <div class="col-md-7">
-                                        <div class="av-val text-right">
+                                        <div class="av-val text-right row">
                                             <div class="col-md-7">
                                                 <div class="av-amount">{{ sum('estim_cost', onGoingSchemeFilter)-sum('estim_expenditure', onGoingSchemeFilter)|currency:'Rs. ' }}</div>
                                                 <div class="av-title">Through Forward as on 01/07/2020</div>
@@ -202,7 +202,9 @@ chartsector.render();
                                     </div>
                                 </div>
                             </div>
-                            <p style="margin-top: 50px">New Scheme</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>New Scheme</p>
                             <div class="average">
                                 <div class="row clearfix">
                                     <div class="col-md-5">
@@ -213,7 +215,7 @@ chartsector.render();
                                         </div>
                                     </div>
                                     <div class="col-md-7">
-                                        <div class="av-val text-right">
+                                        <div class="av-val text-right row">
                                             <div class="col-md-7">
                                                 <div class="av-amount">{{ sum('estim_expenditure', newSchemeFilter)|currency:'Rs. ' }}</div>
                                                 <div class="av-title">Estimated expenditure upto June 2021</div>
@@ -235,7 +237,7 @@ chartsector.render();
                                         </div>
                                     </div>
                                     <div class="col-md-7">
-                                        <div class="av-val text-right">
+                                        <div class="av-val text-right row">
                                             <div class="col-md-7">
                                                 <div class="av-amount">{{ sum('estim_cost', newSchemeFilter)-sum('estim_expenditure', newSchemeFilter)|currency:'Rs. ' }}</div>
                                                 <div class="av-title">Through Forward as on 01/07/2020</div>
@@ -252,53 +254,75 @@ chartsector.render();
                         </div>
                     </div>
                     <div data-ng-if="currentScreen == 1">
-                        <h2>Summary</h2>
-                        <h3>For District ADP 2020-2021</h3>
-                        <p>New Scheme</p>
+                        <h2>{{ summaryType==1 || summaryType==3 ? "Sector":"Taluka" }} Wise Summary For {{ summaryType==1 || summaryType==2 ? "On-Going":"New" }} Schemes</h2>
+                        <h3>Hyderabad District ADP 2020-2021</h3>
                         <div class="summary-list table-responsive">
                             <table class="table">
                                 <thead>
-                                <tr>
-                                    <th>Sector <i class="fa fa-caret-down"></i></th>
-                                    <th>ADP No <i class="fa fa-caret-down"></i></th>
-                                    <th>Description</th>
-                                    <th>Target Date for Completion</th>
-                                    <th>Estim: Cost </th>
-                                    <th>Acutal Exp:</th>
-                                    <th>Throwfwd as on  </th>
-                                    <th>Capi</th>
-                                    <th>Electric</th>
-                                    <th>Rev</th>
-                                    <th>Total</th>
-                                </tr>
+                                    <tr>
+                                        <th>{{ summaryType==1 || summaryType==3 ? "Sector":"Taluka" }}</th>
+                                        <th class="bg-danger">No. Of Schemes</th>
+                                        <th class="bg-primary">Estimated Cost</th>
+                                        <th class="bg-primary">Actual Expense</th>
+                                        <th class="bg-primary">Estimated Expense</th>
+                                        <th class="bg-success">Throwforward as on 01-07-2020 </th>
+                                        <th class="bg-info">Capital</th>
+                                        <th class="bg-info">Electric</th>
+                                        <th class="bg-info">Rev</th>
+                                        <th class="bg-warning">Total</th>
+                                    </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>2,920.92</td>
-                                    <td>1,259.249</td>
-                                    <td>445</td>
-                                    <td>433.577</td>
-                                    <td>619.664</td>
-                                    <td>551.478</td>
-                                    <td>503.586</td>
-                                    <td>89%</td>
-                                    <td>81.27%</td>
-                                    <td>91.32%</td>
-                                </tr>
-                                <tr>
-                                    <td>2,920.92</td>
-                                    <td>1,259.249</td>
-                                    <td>445</td>
-                                    <td>433.577</td>
-                                    <td>619.664</td>
-                                    <td>551.478</td>
-                                    <td>503.586</td>
-                                    <td>89%</td>
-                                    <td>81.27%</td>
-                                    <td>91.32%</td>
-                                </tr>
+                                <tbody data-ng-if="summaryType==1 || summaryType==3">
+                                    <tr data-ng-repeat="sector in sectors|filter:{parent_id: 0}:true" data-ng-show="(schemes|filter:summaryFilterWithSector(sector)).length > 0">
+                                        <td>{{ sector.title }}</td>
+                                        <td class="bg-danger">{{ (schemes|filter:summaryFilterWithSector(sector)).length }}</td>
+                                        <td class="bg-primary">{{ sum('estim_cost', summaryFilterWithSector(sector))|currency:'' }}</td>
+                                        <td class="bg-primary">{{ sum('actual_expenditure', summaryFilterWithSector(sector))|currency:'' }}</td>
+                                        <td class="bg-primary">{{ sum('estim_expenditure', summaryFilterWithSector(sector))|currency:'' }}</td>
+                                        <td class="bg-success">{{ sum('estim_cost', summaryFilterWithSector(sector))-sum('actual_expenditure', summaryFilterWithSector(sector))|currency:'' }}</td>
+                                        <td class="bg-info">{{ sum('capital', summaryFilterWithSector(sector))|currency:'' }}</td>
+                                        <td class="bg-info">{{ sum('electric', summaryFilterWithSector(sector))|currency:'' }}</td>
+                                        <td class="bg-info">{{ sum('rev', summaryFilterWithSector(sector))|currency:'' }}</td>
+                                        <td class="bg-warning">{{ sum('capital', summaryFilterWithSector(sector))+sum('electric', summaryFilterWithSector(sector))+sum('rev', summaryFilterWithSector(sector))|currency:'' }}</td>
+                                    </tr>
                                 </tbody>
+                                <tbody data-ng-if="summaryType==2 || summaryType==4">
+                                    <tr data-ng-repeat="taluka in talukas" data-ng-show="(schemes|filter:summaryFilterWithTaluka(taluka)).length > 0">
+                                        <td>{{ taluka.title }}</td>
+                                        <td class="bg-danger">{{ (schemes|filter:summaryFilterWithTaluka(taluka)).length }}</td>
+                                        <td class="bg-primary">{{ sum('estim_cost', summaryFilterWithTaluka(taluka))|currency:'' }}</td>
+                                        <td class="bg-primary">{{ sum('actual_expenditure', summaryFilterWithTaluka(taluka))|currency:'' }}</td>
+                                        <td class="bg-primary">{{ sum('estim_expenditure', summaryFilterWithTaluka(taluka))|currency:'' }}</td>
+                                        <td class="bg-success">{{ sum('estim_cost', summaryFilterWithTaluka(taluka))-sum('actual_expenditure', summaryFilterWithTaluka(taluka))|currency:'' }}</td>
+                                        <td class="bg-info">{{ sum('capital', summaryFilterWithTaluka(taluka))|currency:'' }}</td>
+                                        <td class="bg-info">{{ sum('electric', summaryFilterWithTaluka(taluka))|currency:'' }}</td>
+                                        <td class="bg-info">{{ sum('rev', summaryFilterWithTaluka(taluka))|currency:'' }}</td>
+                                        <td class="bg-warning">{{ sum('capital', summaryFilterWithTaluka(taluka))+sum('electric', summaryFilterWithTaluka(taluka))+sum('rev', summaryFilterWithTaluka(taluka))|currency:'' }}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th class="bg-danger">{{ (schemes|filter:summaryFilter).length }}</th>
+                                        <th class="bg-primary">{{ sum('estim_cost', summaryFilter)|currency:'' }}</th>
+                                        <th class="bg-primary">{{ sum('actual_expenditure', summaryFilter)|currency:'' }}</th>
+                                        <th class="bg-primary">{{ sum('estim_expenditure', summaryFilter)|currency:'' }}</th>
+                                        <th class="bg-success">{{ sum('estim_cost', summaryFilter)-sum('actual_expenditure', summaryFilter)|currency:'' }}</th>
+                                        <th class="bg-info">{{ sum('capital', summaryFilter)|currency:'' }}</th>
+                                        <th class="bg-info">{{ sum('electric', summaryFilter)|currency:'' }}</th>
+                                        <th class="bg-info">{{ sum('rev', summaryFilter)|currency:'' }}</th>
+                                        <th class="bg-warning">{{ sum('capital', summaryFilter)+sum('electric', summaryFilter)+sum('rev', summaryFilter)|currency:'' }}</th>
+                                    </tr>
+                                </tfoot>
                             </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="sectorWiseRelease" style="height: 300px; width: 100%;"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="sectorWiseUtilize" style="height: 300px; width: 100%;"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="summary-list table-responsive" data-ng-if="currentScreen == 2">
@@ -308,22 +332,24 @@ chartsector.render();
                                     <th width="10%"><a data-ng-click="sortBy('sector')">Sector <i class="fa fa-caret-down"></i></th>
                                     <th width="8%"><a data-ng-click="sortBy('adp_number')">ADP No <i class="fa fa-caret-down"></i></th>
                                     <th><a data-ng-click="sortBy('project_description')">Description</th>
+                                    <th width="10%"><a data-ng-click="sortBy('approval_year')">Approval Year</th>
                                     <th width="10%"><a data-ng-click="sortBy('completion_date')">Target Date for Completion</th>
-                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_cost')">Estim: Cost </th>
-                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('actual_expenditure')">Acutal Exp:</th>
-                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_expenditure')">Estim Exp:</th>
-                                    <th width="6%"><a class="bg-success">Throwfwd as on  </th>
-                                    <th width="6%" class="bg-info"><a data-ng-click="sortBy('capital')">Capi</th>
+                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_cost')">Estimated Cost </th>
+                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('actual_expenditure')">Acutal Expense</th>
+                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_expenditure')">Estimated Expense</th>
+                                    <th width="6%" class="bg-success"><a>Throwforward as on 01-07-2020</th>
+                                    <th width="6%" class="bg-info"><a data-ng-click="sortBy('capital')">Capital</th>
                                     <th width="6%" class="bg-info"><a data-ng-click="sortBy('electric')">Electric</th>
                                     <th width="6%" class="bg-info"><a data-ng-click="sortBy('rev')">Rev</th>
-                                    <th width="6%"><a class="bg-info">Total</th>
+                                    <th width="6%" class="bg-info"><a>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="scheme in schemes|filter:detailFilter:true|orderBy:orderByCol:orderDirection">
+                                <tr data-ng-repeat="scheme in (schemes|filter:detailFilter:true|orderBy:orderByCol:orderDirection).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
                                     <td>{{ scheme.sector_id > 0 ? (sectors|filter:{id: scheme.sector_id}:1)[0].title : "--" }}</td>
                                     <td>{{ scheme.adp_number }}</td>
                                     <td>{{ scheme.project_description }}</td>
+                                    <td>{{ scheme.approval_year }}</td>
                                     <td>{{ scheme.completion_date|date }}</td>
                                     <td class="bg-primary">{{ scheme.estim_cost }}</td>
                                     <td class="bg-primary">{{ scheme.actual_expenditure }}</td>
@@ -332,31 +358,23 @@ chartsector.render();
                                     <td class="bg-info">{{ scheme.capital }}</td>
                                     <td class="bg-info">{{ scheme.electric }}</td>
                                     <td class="bg-info">{{ scheme.rev }}</td>
-                                    <td class="bg-info">{{ scheme.capital -- scheme.electric -- scheme.rev | number : 2 }}</td>
+                                    <td class="bg-info">{{ (scheme.capital + scheme.electric + scheme.rev) | currency:'' }}</td>
                                 </tr>
 
                                 <tr>
-                                    <th colspan="4" class="text-right">Grand Total</th>
-                                    <th class="bg-primary">433.577</th>
-                                    <th class="bg-primary">619.664</th>
-                                    <th class="bg-primary">551.478</th>
-                                    <th class="bg-success">551.478</th>
-                                    <th class="bg-info">503.586</th>
-                                    <th class="bg-info">89.00%</th>
-                                    <th class="bg-info">81.27%</th>
-                                    <th class="bg-info">91.32%</th>
+                                    <th colspan="5" class="text-right">Grand Total</th>
+                                    <th class="bg-primary">{{ sum('estim_cost', detailFilter)|currency:'' }}</th>
+                                    <th class="bg-primary">{{ sum('actual_expenditure', detailFilter)|currency:'' }}</th>
+                                    <th class="bg-primary">{{ sum('estim_expenditure', detailFilter)|currency:'' }}</th>
+                                    <th class="bg-success">{{ sum('estim_cost', detailFilter)-sum('actual_expenditure', detailFilter)|currency:'' }}</th>
+                                    <th class="bg-info">{{ sum('capital', detailFilter)|currency:'' }}</th>
+                                    <th class="bg-info">{{ sum('electric', detailFilter)|currency:'' }}</th>
+                                    <th class="bg-info">{{ sum('rev', detailFilter)|currency:'' }}</th>
+                                    <th class="bg-info">{{ sum('capital', detailFilter)+sum('electric', detailFilter)+sum('rev', detailFilter)|currency:'' }}</th>
                                 </tr>
                             </tbody>
                         </table>
-                        <ul uib-pagination total-items="filters.total" ng-model="filters.page" max-size="maxSize" items-per-page="filters.rows" data-ng-change="get_records()"></ul>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div id="sectorWiseRelease" style="height: 300px; width: 100%;"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div id="sectorWiseUtilize" style="height: 300px; width: 100%;"></div>
-                            </div>
-                        </div>
+                        <ul uib-pagination total-items="(schemes|filter:detailFilter:true).length" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
                     </div>
                 </div>
             </div>

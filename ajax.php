@@ -59,12 +59,12 @@ if(isset($_REQUEST["action"])){
                     );
                 }
             }
-            $rs = doquery( "select distinct(approval_year) from schemes where status=1", $dblink );
+            $rs = doquery( "select distinct(approval_year) from schemes where status=1 and approval_year > 0 order by approval_year desc", $dblink );
 			$years = array();
 			if( numrows( $rs ) > 0 ) {
 				while( $r = dofetch( $rs ) ) {
 					$years[] = array(
-						"approval_year" => $r[ "approval_year" ]
+						"approval_year" => (int)$r[ "approval_year" ]
 					);
 				}
 			}
