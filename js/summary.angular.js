@@ -12,7 +12,7 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 		$scope.categories = [];
 		$scope.years = [];
 		$scope.processing = true;
-		$scope.currentScreen = 1;
+		$scope.currentScreen = 0;
 		$scope.summaryType = 1;
 		$scope.detailType = 0;
 		$scope.currentPage = 1;
