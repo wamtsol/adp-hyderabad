@@ -59,11 +59,21 @@ if(isset($_REQUEST["action"])){
                     );
                 }
             }
+            $rs = doquery( "select distinct(approval_year) from schemes where status=1", $dblink );
+			$years = array();
+			if( numrows( $rs ) > 0 ) {
+				while( $r = dofetch( $rs ) ) {
+					$years[] = array(
+						"approval_year" => $r[ "approval_year" ]
+					);
+				}
+			}
             $response = [
                 "schemes" => $schemes,
                 "talukas" => $talukas,
                 "categories" => $categories,
                 "sectors" => $sectors,
+                "years" => $years,
             ];
         break;
     }

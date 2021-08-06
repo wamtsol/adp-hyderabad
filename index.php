@@ -125,7 +125,7 @@ chartsector.render();
                             <a href="#" class="btn btn-md btn-warning" data-ng-click="showDetail(1)">Detailed Report New Scheme</a>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" data-ng-if="currentScreen == 2">
                         <div class="col-md-3">
                             <label>Select Sector</label>
                             <select data-ng-model="filters.sector" ng-options="sector.id as sector.title for sector in sectors" chosen multiple>
@@ -139,6 +139,13 @@ chartsector.render();
                         <div class="col-md-3">
                             <label>Select Category</label>
                             <select data-ng-model="filters.category" ng-options="category.id as category.title for category in categories" chosen multiple>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Select Year</label>
+                            <select data-ng-model="filters.year" convert-to-number multiple chosen>
+                                
+                                <option data-ng-repeat="year in years" value="{{ year.approval_year }}">{{ year.approval_year }}</option>
                             </select>
                         </div>
                     </div>
@@ -321,11 +328,11 @@ chartsector.render();
                                     <td class="bg-primary">{{ scheme.estim_cost }}</td>
                                     <td class="bg-primary">{{ scheme.actual_expenditure }}</td>
                                     <td class="bg-primary">{{ scheme.estim_expenditure }}</td>
-                                    <td class="bg-success">3434</td>
+                                    <td class="bg-success">{{ scheme.estim_cost-scheme.actual_expenditure | number : 2 }}</td>
                                     <td class="bg-info">{{ scheme.capital }}</td>
                                     <td class="bg-info">{{ scheme.electric }}</td>
                                     <td class="bg-info">{{ scheme.rev }}</td>
-                                    <td class="bg-info">4545</td>
+                                    <td class="bg-info">{{ scheme.capital -- scheme.electric -- scheme.rev | number : 2 }}</td>
                                 </tr>
 
                                 <tr>

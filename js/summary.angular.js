@@ -6,9 +6,11 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 		$scope.filters = {
 			sector: 0,
 			taluka: 0,
-			category: 0
+			category: 0,
+			year: 0
 		}
 		$scope.categories = [];
+		$scope.years = [];
 		$scope.processing = true;
 		$scope.currentScreen = 0;
 		$scope.summaryType = 0;
@@ -25,6 +27,7 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 					$scope.talukas = response.talukas;
 					$scope.sectors = response.sectors;
 					$scope.categories = response.categories;
+					$scope.years = response.years;
 					$scope.processing = false;
 				}
 			});
@@ -37,7 +40,6 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 			}
 			return total
 		}
-		
 		$scope.onGoingSchemeFilter = function(item){
 			return item.approval_year < 2022;
 		}
@@ -105,4 +107,16 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 			});
 		}
 	}
-)
+).directive('convertToNumber', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attrs, ngModel) {
+			ngModel.$parsers.push(function(val) {
+				return val != null ? parseInt(val, 10) : null;
+			});
+			ngModel.$formatters.push(function(val) {
+				return val != null ? '' + val : null;
+			});
+		}
+	};
+})
