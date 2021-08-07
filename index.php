@@ -333,10 +333,10 @@ chartsector.render();
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th width="10%"><a data-ng-click="sortBy('sector')">Sector <i data-ng-if="orderByCol=='sector'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
+                                    <th width="8%"><a data-ng-click="sortBy('sector')">Sector <i data-ng-if="orderByCol=='sector'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="8%"><a data-ng-click="sortBy('adp_number')">ADP No <i data-ng-if="orderByCol=='adp_number'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th><a data-ng-click="sortBy('project_description')">Description <i data-ng-if="orderByCol=='project_description'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
-                                    <th width="10%"><a data-ng-click="sortBy('approval_year')">Approval Year <i data-ng-if="orderByCol=='approval_year'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
+                                    <th width="6%"><a data-ng-click="sortBy('approval_year')">Approval Year <i data-ng-if="orderByCol=='approval_year'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="10%"><a data-ng-click="sortBy('completion_date')">Target Date for Completion <i data-ng-if="orderByCol=='completion_date'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_cost')">Estimated Cost <i data-ng-if="orderByCol=='estim_cost'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="6%" class="bg-primary"><a data-ng-click="sortBy('actual_expenditure')">Acutal Expense <i data-ng-if="orderByCol=='actual_expenditure'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
