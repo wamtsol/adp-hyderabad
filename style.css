@@ -182,15 +182,19 @@ span.percent {
 .filters .chosen-container {
     width: 100% !important;
 }
+.commisioner.res{ display:none;}
 @media (max-width: 980px) {
-    .header h1{ font-size: 24px;}
-    span.year{font-size: 14px;padding: 0 10px; position: relative;top: 0;}
-    .header h2{font-size: 22px;}
+    .header .row > div {
+        padding: 0 5px;
+    }
+    .header h1{ font-size: 18px;}
+    span.year{font-size: 12px;padding: 0 10px; position: relative;top: 0;right: 0;}
+    .header h2{font-size: 16px;margin-bottom: 3px;}
     .commisioner h3{font-size: 18px;}
     .commisioner h4{font-size: 14px;}
     .filters a{margin-bottom: 10px;}
     .logo {
-        margin: 10px 0;
+        /* margin: 10px 0; */
     }
     .summary h2{font-size: 28px;}
     .summary h3{font-size: 18px;}
@@ -206,9 +210,11 @@ span.percent {
     .av-val.text-right{ margin-top: 10px;}
     .commisioner {
         margin-top: 15px;
+        display: none;
     }
     .footer{margin-top: 30px;}
     .footer p{text-align: center;margin-bottom: 10px;font-size: 14px;}
     .av-amount{font-size: 22px;}
     .filters .chosen-container{margin-bottom: 10px;}
+    .commisioner.res{ display:block;}
 }

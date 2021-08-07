@@ -95,6 +95,10 @@ chartsector.render();
                         </div>
                     </div>
                 </div>
+                <div class="commisioner res">
+                    <h3>DEPUTY COMMISSIONER HYDERABAD</h3>
+                    <h4>MIS System for Annual Development Program - District Hyderabad 2020-21</h4>
+                </div>
             </div>
             <div class="content">
                 <div class="filters">
