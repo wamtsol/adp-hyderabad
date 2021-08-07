@@ -17,6 +17,8 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 		$scope.detailType = 0;
 		$scope.currentPage = 1;
 		$scope.itemsPerPage = 10;
+		$scope.orderByCol = 'id';
+		$scope.orderDirection = false;
 		angular.element(document).ready(function () {
 			$scope.get_records();
 		});
@@ -163,11 +165,9 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 				&& ($scope.filters.category.length == 0 || $scope.filters.category.indexOf(item.category_id) !== -1)
 				&& ($scope.filters.year.length == 0 || $scope.filters.year.indexOf(item.approval_year) !== -1);;
 		}
-		$scope.orderByCol = 'id';
-		$scope.orderDirection = false;
 		$scope.sortBy = function(col){
 			if($scope.orderByCol == col){
-				$scope.orderDirection = !$scope.order
+				$scope.orderDirection = !$scope.orderDirection
 			}
 			else{
 				$scope.orderByCol = col;
