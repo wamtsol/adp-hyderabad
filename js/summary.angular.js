@@ -45,10 +45,10 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 			return total
 		}
 		$scope.onGoingSchemeFilter = function(item){
-			return item.approval_year < 2022;
+			return item.approval_year;
 		}
 		$scope.newSchemeFilter = function(item){
-			return item.approval_year >= 2022;
+			return item.approval_year = 2022;
 		}
 		$scope.showSummary = function(type){
 			if(type === 0){
@@ -121,45 +121,46 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 			$scope.detailType = type;
 		}
 		$scope.summaryFilter = function(item){
-			if($scope.summaryType <= 2){
-				return item.approval_year < 2022;
-			}
-			else{
-				return item.approval_year >= 2022;
-			}
+			return item.approval_year = 2022;
+			// if($scope.summaryType <= 2){
+			// 	return item.approval_year < 2022;
+			// }
+			// else{
+			// 	return item.approval_year >= 2022;
+			// }
 		}
 		$scope.summaryFilterWithSector = function(sector) {
 			return function(item) {
-				let rtn = false;
-				if($scope.summaryType <= 2){
-					rtn = item.approval_year < 2022;
-				}
-				else{
-					rtn = item.approval_year >= 2022;
-				}
+				let rtn = true;
+				// if($scope.summaryType <= 2){
+				// 	rtn = item.approval_year < 2022;
+				// }
+				// else{
+				// 	rtn = item.approval_year >= 2022;
+				// }
 				return rtn && sector.id == item.sector_id;
 			}
 		}
 		$scope.summaryFilterWithTaluka = function(taluka) {
 			return function(item) {
-				let rtn = false;
-				if($scope.summaryType <= 2){
-					rtn = item.approval_year < 2022;
-				}
-				else{
-					rtn = item.approval_year >= 2022;
-				}
+				let rtn = true;
+				// if($scope.summaryType <= 2){
+				// 	rtn = item.approval_year < 2022;
+				// }
+				// else{
+				// 	rtn = item.approval_year >= 2022;
+				// }
 				return rtn && taluka.id == item.taluka_id;
 			}
 		}
 		$scope.detailFilter = function(item){
-			let rtn = false;
-			if($scope.detailType == 0){
-				rtn =  item.approval_year < 2022
-			}
-			else{
-				rtn = item.approval_year >= 2022;
-			}
+			let rtn = true;
+			// if($scope.detailType == 0){
+			// 	rtn =  item.approval_year < 2022
+			// }
+			// else{
+			// 	rtn = item.approval_year >= 2022;
+			// }
 			return rtn && ($scope.filters.sector.length == 0 || $scope.filters.sector.indexOf(item.sector_id) !== -1)
 				&& ($scope.filters.taluka.length == 0 || $scope.filters.taluka.indexOf(item.taluka_id) !== -1)
 				&& ($scope.filters.category.length == 0 || $scope.filters.category.indexOf(item.category_id) !== -1)

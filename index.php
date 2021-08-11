@@ -108,16 +108,16 @@ chartsector.render();
                             <!-- <a href="#" class="btn btn-md btn-info">Summary</a> -->
                         </div>
                         <div class="col-md-3">
-                            <a href="" class="btn btn-md btn-success" data-ng-click="showSummary(1)">Sector Wise Summary On-going</a>
+                            <a href="" class="btn btn-md btn-success" data-ng-click="showSummary(1)">Sector Wise Summary</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="" class="btn btn-md btn-info" data-ng-click="showSummary(2)">Taluka Wise Summary On-going</a>
+                            <a href="" class="btn btn-md btn-info" data-ng-click="showSummary(2)">Taluka Wise Summary</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="" class="btn btn-md btn-warning" data-ng-click="showDetail(0)">Detailed Report On-going</a>
+                            <a href="" class="btn btn-md btn-warning" data-ng-click="showDetail(0)">Detailed Report</a>
                         </div>
                     </div>
-                    <div class="row margin-b-10">
+                    <!-- <div class="row margin-b-10">
                         <div class="col-md-3"></div>
                         <div class="col-md-3">
                             <a href="" class="btn btn-md btn-success" data-ng-click="showSummary(3)">Sector Wise Summary New Scheme</a>
@@ -128,7 +128,7 @@ chartsector.render();
                         <div class="col-md-3">
                             <a href="" class="btn btn-md btn-warning" data-ng-click="showDetail(1)">Detailed Report New Scheme</a>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row" data-ng-if="currentScreen == 2">
                         <div class="col-md-3">
                             <label>Select Sector</label>
@@ -158,7 +158,7 @@ chartsector.render();
                             <h2>Summary</h2>
                             <h3>For District ADP 2020-2021</h3>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <p>On-Going Scheme</p>
                             <div class="average">
                                 <div class="row clearfix">
@@ -207,7 +207,7 @@ chartsector.render();
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <p>New Scheme</p>
                             <div class="average">
                                 <div class="row clearfix">
@@ -255,7 +255,7 @@ chartsector.render();
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div data-ng-if="currentScreen == 1">
                         <h2>{{ summaryType==1 || summaryType==3 ? "Sector":"Taluka" }} Wise Summary For {{ summaryType==1 || summaryType==2 ? "On-Going":"New" }} Schemes</h2>
@@ -338,9 +338,10 @@ chartsector.render();
                                     <th><a data-ng-click="sortBy('project_description')">Description <i data-ng-if="orderByCol=='project_description'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="6%"><a data-ng-click="sortBy('approval_year')">Approval Year <i data-ng-if="orderByCol=='approval_year'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="10%"><a data-ng-click="sortBy('completion_date')">Target Date for Completion <i data-ng-if="orderByCol=='completion_date'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
+                                    <th width="6%"><a data-ng-click="sortBy('taluka')">Location <i data-ng-if="orderByCol=='taluka'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_cost')">Estimated Cost <i data-ng-if="orderByCol=='estim_cost'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="6%" class="bg-primary"><a data-ng-click="sortBy('actual_expenditure')">Acutal Expense <i data-ng-if="orderByCol=='actual_expenditure'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
-                                    <th width="6%" class="bg-primary"><a data-ng-click="sortBy('estim_expenditure')">Estimated Expense <i data-ng-if="orderByCol=='estim_expenditure'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
+                                    
                                     <th width="6%" class="bg-success">Throwforward as on 01-07-2020</th>
                                     <th width="6%" class="bg-info"><a data-ng-click="sortBy('capital')">Capital <i data-ng-if="orderByCol=='capital'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
                                     <th width="6%" class="bg-info"><a data-ng-click="sortBy('electric')">Electric <i data-ng-if="orderByCol=='electric'" class="fa" data-ng-class="{'fa-caret-down': orderDirection, 'fa-caret-up': !orderDirection}"></i></a></th>
@@ -355,9 +356,10 @@ chartsector.render();
                                     <td>{{ scheme.project_description }}</td>
                                     <td>{{ scheme.approval_year }}</td>
                                     <td>{{ scheme.completion_date|date }}</td>
+                                    <td>{{ scheme.taluka_id > 0 ? (talukas|filter:{id: scheme.taluka_id}:1)[0].title : "--" }}</td>
                                     <td class="bg-primary">{{ scheme.estim_cost }}</td>
                                     <td class="bg-primary">{{ scheme.actual_expenditure }}</td>
-                                    <td class="bg-primary">{{ scheme.estim_expenditure }}</td>
+                                    
                                     <td class="bg-success">{{ scheme.estim_cost-scheme.actual_expenditure | number : 2 }}</td>
                                     <td class="bg-info">{{ scheme.capital }}</td>
                                     <td class="bg-info">{{ scheme.electric }}</td>
@@ -366,10 +368,10 @@ chartsector.render();
                                 </tr>
 
                                 <tr>
-                                    <th colspan="5" class="text-right">Grand Total</th>
+                                    <th colspan="6" class="text-right">Grand Total</th>
                                     <th class="bg-primary">{{ sum('estim_cost', detailFilter)|currency:'' }}</th>
                                     <th class="bg-primary">{{ sum('actual_expenditure', detailFilter)|currency:'' }}</th>
-                                    <th class="bg-primary">{{ sum('estim_expenditure', detailFilter)|currency:'' }}</th>
+                                    
                                     <th class="bg-success">{{ sum('estim_cost', detailFilter)-sum('actual_expenditure', detailFilter)|currency:'' }}</th>
                                     <th class="bg-info">{{ sum('capital', detailFilter)|currency:'' }}</th>
                                     <th class="bg-info">{{ sum('electric', detailFilter)|currency:'' }}</th>
