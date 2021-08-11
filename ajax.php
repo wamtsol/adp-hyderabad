@@ -15,7 +15,7 @@ if(isset($_REQUEST["action"])){
 						"sub_sector_id" => (int)$r[ "sub_sector_id" ],
                         "taluka_id" => (int)$r[ "taluka_id" ],
 						"category_id" => (int)$r[ "category_id" ],
-						"approval_year" => (int)$r[ "approval_year" ],
+						"approval_year" => date('Y',strtotime($r["approval_year"])),
                         "adp_number" => unslash($r[ "adp_number" ]),
                         "project_description" => unslash($r[ "project_description" ]),
                         "completion_date" => strtotime($r[ "completion_date" ])*1000,
@@ -64,7 +64,7 @@ if(isset($_REQUEST["action"])){
 			if( numrows( $rs ) > 0 ) {
 				while( $r = dofetch( $rs ) ) {
 					$years[] = array(
-						"approval_year" => (int)$r[ "approval_year" ]
+						"approval_year" => date('Y',strtotime($r["approval_year"]))
 					);
 				}
 			}

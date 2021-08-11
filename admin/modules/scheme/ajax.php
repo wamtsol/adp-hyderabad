@@ -66,7 +66,7 @@ if(isset($_REQUEST["action"])){
 				while( $r = dofetch( $rs ) ) {
 					$years[] = array(
 						//"id" => (int)$r[ "id" ],
-						"approval_year" => $r[ "approval_year" ]
+						"approval_year" => date('Y',strtotime($r["approval_year"]))
 					);
 				}
 			}
@@ -98,7 +98,7 @@ if(isset($_REQUEST["action"])){
 						"sub_sector_id" => (int)$r[ "sub_sector_id" ],
                         "taluka_id" => (int)$r[ "taluka_id" ],
 						"category_id" => (int)$r[ "category_id" ],
-						"approval_year" => (int)$r[ "approval_year" ],
+						"approval_year" => date_convert($r[ "approval_year" ]),
                         "adp_number" => unslash($r[ "adp_number" ]),
                         "project_description" => unslash($r[ "project_description" ]),
                         "completion_date" => date_convert($r[ "completion_date" ]),
@@ -124,10 +124,10 @@ if(isset($_REQUEST["action"])){
             $schemes = json_decode($_POST["schemes"]);
             if( !empty( $schemes->adp_number ) ) {
                 if( !empty( $schemes->id ) ) {
-                    doquery("update schemes set sector_id = '".slash($schemes->sector_id)."', sub_sector_id = '".slash($schemes->sub_sector_id)."', taluka_id = '".slash($schemes->taluka_id)."', category_id = '".slash($schemes->category_id)."', adp_number = '".slash($schemes->adp_number)."', approval_year = '".slash($schemes->approval_year)."', project_description = '".slash($schemes->project_description)."', completion_date = '".date_dbconvert($schemes->completion_date)."', estim_cost = '".slash($schemes->estim_cost)."', actual_expenditure = '".slash($schemes->actual_expenditure)."', estim_expenditure = '".slash($schemes->estim_expenditure)."', capital = '".slash($schemes->capital)."', electric = '".slash($schemes->electric)."', rev = '".slash($schemes->rev)."' where id = '".$schemes->id."'", $dblink);
+                    doquery("update schemes set sector_id = '".slash($schemes->sector_id)."', sub_sector_id = '".slash($schemes->sub_sector_id)."', taluka_id = '".slash($schemes->taluka_id)."', category_id = '".slash($schemes->category_id)."', adp_number = '".slash($schemes->adp_number)."', approval_year = '".date_dbconvert($schemes->approval_year)."', project_description = '".slash($schemes->project_description)."', completion_date = '".date_dbconvert($schemes->completion_date)."', estim_cost = '".slash($schemes->estim_cost)."', actual_expenditure = '".slash($schemes->actual_expenditure)."', estim_expenditure = '".slash($schemes->estim_expenditure)."', capital = '".slash($schemes->capital)."', electric = '".slash($schemes->electric)."', rev = '".slash($schemes->rev)."' where id = '".$schemes->id."'", $dblink);
                 }
                 else{
-                    doquery("insert into schemes(sector_id, sub_sector_id, taluka_id, category_id, adp_number, approval_year, project_description, completion_date, estim_cost, actual_expenditure, estim_expenditure, capital, electric, rev) values('".slash($schemes->sector_id)."', '".slash($schemes->sub_sector_id)."', '".slash($schemes->taluka_id)."', '".slash($schemes->category_id)."', '".slash($schemes->adp_number)."', '".slash($schemes->approval_year)."', '".slash($schemes->project_description)."', '".date_dbconvert($schemes->completion_date)."', '".slash($schemes->estim_cost)."', '".slash($schemes->actual_expenditure)."', '".slash($schemes->estim_expenditure)."', '".slash($schemes->capital)."', '".slash($schemes->electric)."', '".slash($schemes->rev)."')", $dblink);
+                    doquery("insert into schemes(sector_id, sub_sector_id, taluka_id, category_id, adp_number, approval_year, project_description, completion_date, estim_cost, actual_expenditure, estim_expenditure, capital, electric, rev) values('".slash($schemes->sector_id)."', '".slash($schemes->sub_sector_id)."', '".slash($schemes->taluka_id)."', '".slash($schemes->category_id)."', '".slash($schemes->adp_number)."', '".date_dbconvert($schemes->approval_year)."', '".slash($schemes->project_description)."', '".date_dbconvert($schemes->completion_date)."', '".slash($schemes->estim_cost)."', '".slash($schemes->actual_expenditure)."', '".slash($schemes->estim_expenditure)."', '".slash($schemes->capital)."', '".slash($schemes->electric)."', '".slash($schemes->rev)."')", $dblink);
                     $id = inserted_id();
                     $r = dofetch(doquery("select * from schemes where id ='".$id."'", $dblink));
                     $schemes = array(
@@ -139,6 +139,7 @@ if(isset($_REQUEST["action"])){
                         "adp_number" => unslash($r[ "adp_number" ]),
                         "project_description" => unslash($r[ "project_description" ]),
                         "completion_date" => date_convert($r[ "completion_date" ]),
+						"approval_year" => date('Y',strtotime($r["approval_year"])),
                     );
                 }
                 $response = array(

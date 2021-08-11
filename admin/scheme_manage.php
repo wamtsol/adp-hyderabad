@@ -101,7 +101,7 @@ $page="scheme_manage";
                                                 <a href="" ng-disabled="processing" ng-click="save_category($index)" class="btn btn-info">Save</a>
                                             </div>
 										</td>
-                                        <td><input type="text" data-ng-model="scheme.approval_year" data-ng-change="update_record($index);changed[$index]=false" class="form-control" /></td>
+                                        <td><input type="text" data-ng-model="scheme.approval_year" data-ng-change="update_record($index);changed[$index]=false" class="form-control date-picker" /></td>
                                         <td>
                                             <select data-ng-model="scheme.sector_id" data-ng-change="update_record($index);changed[$index]=false" chosen ng-options="sector.id as sector.title for sector in sectors">
                                             </select><br>
