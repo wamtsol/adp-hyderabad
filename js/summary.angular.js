@@ -47,9 +47,9 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 		$scope.onGoingSchemeFilter = function(item){
 			return item.approval_year;
 		}
-		$scope.newSchemeFilter = function(item){
-			return item.approval_year = 2022;
-		}
+		// $scope.newSchemeFilter = function(item){
+		// 	return item.approval_year = 2022;
+		// }
 		$scope.showSummary = function(type){
 			if(type === 0){
 				$scope.currentScreen = 0;
@@ -121,7 +121,7 @@ angular.module('summary', ['ngAnimate', 'angularMoment', 'ui.bootstrap', 'localy
 			$scope.detailType = type;
 		}
 		$scope.summaryFilter = function(item){
-			return item.approval_year = 2022;
+			return item.approval_year;
 			// if($scope.summaryType <= 2){
 			// 	return item.approval_year < 2022;
 			// }

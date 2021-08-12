@@ -145,11 +145,11 @@ chartsector.render();
                             <select data-ng-model="filters.category" ng-options="category.id as category.title for category in categories" chosen multiple>
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <label>Select Year</label>
                             <select data-ng-model="filters.year" multiple chosen ng-options="year.approval_year as year.approval_year for year in years">
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="summary">
